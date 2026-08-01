@@ -1,4 +1,8 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5134/api";
+function getApiUrl() {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== "undefined") return `http://${window.location.hostname}:5134/api`;
+  return "http://localhost:5134/api";
+}
 
 export class ApiError extends Error {
   constructor(message: string, public status: number, public data?: unknown) {
@@ -48,7 +52,7 @@ export async function api<T>(path: string, options: ApiOptions = {}): Promise<T>
     if (token) headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(`${getApiUrl()}${path}`, {
     ...options,
     headers,
     cache: "no-store",

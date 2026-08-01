@@ -14,7 +14,7 @@ const links = [
   { href: "/student-accounts", label: "บัญชีนักเรียน", description: "จัดการการเข้าใช้งาน", icon: KeyRound },
   { href: "/attendance", label: "บันทึกการเข้าเรียน", description: "ลงสถานะรายบุคคล", icon: ClipboardCheck },
   { href: "/leave-requests", label: "อนุมัติการลา", description: "ตรวจสอบคำขอ", icon: FileCheck2 },
-  { href: "/attendance-logs", label: "ประวัติและ CSV", description: "ค้นหาและส่งออก", icon: FileSpreadsheet },
+  { href: "/attendance-logs", label: "Report", description: "ค้นหาและส่งออก", icon: FileSpreadsheet },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {

@@ -107,3 +107,27 @@ main { animation: page-enter .42s cubic-bezier(.22, 1, .36, 1) both; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+@keyframes delete-modal-enter {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes student-stack-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+@keyframes student-stack-drop {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  70% { opacity: 1; transform: translateX(-50%) translateY(58px) scale(.72) rotate(4deg); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(82px) scale(.25) rotate(8deg); }
+}
+@keyframes trash-catch {
+  0%, 100% { transform: translateX(-50%) rotate(0); }
+  45% { transform: translateX(-50%) rotate(-8deg) scale(1.12); }
+  70% { transform: translateX(-50%) rotate(6deg) scale(1.08); }
+}
+.delete-modal-enter { animation: delete-modal-enter .22s cubic-bezier(.22, 1, .36, 1) both; }
+.student-stack-float { animation: student-stack-float 2.2s ease-in-out infinite; }
+.student-stack-drop { animation: student-stack-drop .7s cubic-bezier(.5, 0, .8, .3) both; }
+.trash-catch { animation: trash-catch .7s ease-in-out both; }
+@keyframes delete-success-pop { from { opacity: 0; transform: scale(.78); } to { opacity: 1; transform: scale(1); } }
+.delete-success-pop { animation: delete-success-pop .32s cubic-bezier(.22, 1, .36, 1) both; }

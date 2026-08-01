@@ -124,3 +124,3892 @@ module.exports = {
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
 [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
 [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+⨯ ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+[31m[1m>[0m [90m1 |[0m ...[32mRL) return process.env.NEXT_PUBLIC_API_URL;`[0mn  [36mif[0m ([36mtypeof[0m window !== [32m"undefined"[0m) [36mreturn[0m.[32m..[0m
+  [90m  |[0m                                                [31m[1m^[0m
+  [90m2 |[0m ...
+  [90m3 |[0m ...
+  [90m4 |[0m ...[36mc[0m data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./lib/api.ts:1:104)
+    at <unknown> (Error: (./lib/api.ts:1:104)
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Client Component Browser]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Client Component SSR]
+    ./app/(protected)/dashboard/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Client Component Browser]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Client Component SSR]
+    ./app/(protected)/students/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Client Component Browser]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Client Component SSR]
+    ./app/(protected)/student-accounts/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/check-in/page.tsx [Client Component Browser]
+    ./app/check-in/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/check-in/page.tsx [Client Component SSR]
+    ./app/check-in/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component Browser]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Client Component SSR]
+    ./app/(protected)/attendance-logs/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Client Component Browser]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #2 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Client Component SSR]
+    ./app/(protected)/leave-requests/page.tsx [Server Component]
+
+  #3 [Client Component Browser]:
+    ./lib/api.ts [Client Component Browser]
+    ./components/app-shell.tsx [Client Component Browser]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component]
+
+  #4 [Client Component SSR]:
+    ./lib/api.ts [Client Component SSR]
+    ./components/app-shell.tsx [Client Component SSR]
+    ./components/app-shell.tsx [Server Component]
+    ./app/(protected)/layout.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component] 
+[browser] ./lib/api.ts:1:104
+Expected ';', '}' or <eof>
+> 1 | ...RL) return process.env.NEXT_PUBLIC_API_URL;`n  if (typeof window !== "undefined") return...
+    |                                                ^
+  2 | ...
+  3 | ...
+  4 | ...c data?: unknown) {
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./lib/api.ts [Client Component Browser]
+    ./app/login/page.tsx [Client Component Browser]
+    ./app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./lib/api.ts [Client Component SSR]
+    ./app/login/page.tsx [Client Component SSR]
+    ./app/login/page.tsx [Server Component] 
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

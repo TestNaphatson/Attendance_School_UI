@@ -93,7 +93,7 @@ export default function AttendanceLogsPage() {
     <div className="mx-auto max-w-7xl space-y-6">
       <div>
         <p className="mb-1 text-sm font-medium text-primary">สำหรับผู้ดูแลระบบ</p>
-        <h1 className="text-2xl font-bold sm:text-3xl">ประวัติการเข้าเรียน</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Report</h1>
         <p className="mt-2 text-sm text-muted-foreground">ข้อมูลแต่ละวันจะถูกเก็บเป็น Log ถาวร ระบบเริ่มรอบวันใหม่เวลา 03:00 น. ตามเวลาประเทศไทย</p>
       </div>
 

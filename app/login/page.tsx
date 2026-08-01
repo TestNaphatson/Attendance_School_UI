@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { AlertCircle, Eye, EyeOff, GraduationCap, Loader2, LockKeyhole, UserRound } from "lucide-react";
+import { AlertCircle, CheckCircle2, Clock3, Eye, EyeOff, GraduationCap, Loader2, LockKeyhole, ShieldCheck, UserRound } from "lucide-react";
 import { api, saveSession } from "@/lib/api";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -52,12 +52,13 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="grid min-h-screen bg-white lg:grid-cols-[1.08fr_.92fr]">
-      <section className="relative hidden overflow-hidden bg-[#243b91] p-12 text-white lg:flex lg:flex-col lg:justify-between">
-        <div className="absolute -right-24 -top-24 size-80 rounded-full border-[48px] border-white/5" />
+    <main onPointerMove={(event) => { event.currentTarget.style.setProperty("--pointer-x", `${event.clientX}px`); event.currentTarget.style.setProperty("--pointer-y", `${event.clientY}px`); }} className="grid min-h-screen overflow-hidden bg-transparent lg:grid-cols-[1.08fr_.92fr]">
+      <section className="relative hidden overflow-hidden bg-gradient-to-br from-[#172a72] via-[#294bb7] to-[#5f7df1] p-12 text-white lg:flex lg:flex-col lg:justify-between">
+        <div className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-300" style={{ background: "radial-gradient(520px circle at var(--pointer-x, 35%) var(--pointer-y, 40%), rgba(255,255,255,.20), transparent 45%)" }} />
+        <div className="absolute -right-24 -top-24 size-80 rounded-full border-[48px] border-white/5 transition-transform duration-700 hover:rotate-12" />
         <div className="absolute -bottom-28 left-10 size-96 rounded-full bg-[#5f7df1]/30 blur-3xl" />
         <div className="relative flex items-center gap-3 text-lg font-semibold">
-          <span className="grid size-11 place-items-center rounded-xl bg-white/15 ring-1 ring-white/20">
+          <span className="grid size-12 place-items-center rounded-2xl bg-white/15 shadow-xl ring-1 ring-white/25 backdrop-blur transition-transform duration-300 hover:-rotate-6 hover:scale-110">
             <GraduationCap className="size-6" />
           </span>
           School Attendance
@@ -65,23 +66,29 @@ export default function LoginPage() {
         <div className="relative max-w-xl pb-12">
           <div className="mb-6 h-1 w-14 rounded-full bg-[#91a5f5]" />
           <h1 className="text-5xl font-semibold leading-tight tracking-tight">ทุกวันเรียนรู้<br />เริ่มจากการมาเรียน</h1>
-          <p className="mt-6 max-w-md text-lg leading-8 text-blue-100/80">
-            จัดการข้อมูลการเข้าเรียนของนักเรียนอย่างเป็นระบบ รวดเร็ว และตรวจสอบได้ในที่เดียว
-          </p>
+          <p className="mt-6 max-w-md text-lg leading-8 text-blue-100/85">จัดการข้อมูลการเข้าเรียนของนักเรียนอย่างเป็นระบบ รวดเร็ว และตรวจสอบได้ในที่เดียว</p>
+          <div className="mt-8 grid max-w-lg gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><CheckCircle2 className="size-5 text-emerald-300" /><p className="mt-3 text-sm font-semibold">เช็กอินง่าย</p><p className="mt-1 text-xs text-blue-100/70">บันทึกได้ทันที</p></div>
+            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><Clock3 className="size-5 text-amber-300" /><p className="mt-3 text-sm font-semibold">ข้อมูลทันเวลา</p><p className="mt-1 text-xs text-blue-100/70">อัปเดตอัตโนมัติ</p></div>
+            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><ShieldCheck className="size-5 text-sky-300" /><p className="mt-3 text-sm font-semibold">ปลอดภัย</p><p className="mt-1 text-xs text-blue-100/70">แยกสิทธิ์ผู้ใช้</p></div>
+          </div>
         </div>
         <p className="relative text-sm text-blue-200/70">ระบบบริหารจัดการสำหรับบุคลากรโรงเรียน</p>
       </section>
 
-      <section className="flex min-h-screen items-center justify-center bg-background p-6 sm:p-10">
-        <Card className="w-full max-w-md border-0 bg-transparent shadow-none">
-          <CardHeader className="px-0 pb-8">
+      <section className="relative flex min-h-screen items-center justify-center bg-background/70 p-5 backdrop-blur-[2px] sm:p-10">
+        <div className="pointer-events-none absolute right-[-8rem] top-[-8rem] size-80 rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-[-10rem] left-[-7rem] size-72 rounded-full bg-blue-200/30 blur-3xl" />
+        <Card className="relative w-full max-w-md border-white/90 bg-white/90 p-2 shadow-[0_28px_90px_rgba(30,46,84,.16)] backdrop-blur-xl transition-transform duration-500 hover:-translate-y-1 sm:p-4">
+          <CardHeader className="pb-7">
             <div className="mb-7 grid size-12 place-items-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 lg:hidden">
               <GraduationCap className="size-7" />
             </div>
-            <CardTitle className="text-3xl">ยินดีต้อนรับกลับ</CardTitle>
-            <CardDescription className="pt-2 text-base">เข้าสู่ระบบเพื่อจัดการข้อมูลการเข้าเรียน</CardDescription>
+            <span className="mb-2 w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">เข้าสู่ระบบอย่างปลอดภัย</span>
+            <CardTitle className="text-3xl sm:text-4xl">ยินดีต้อนรับกลับ</CardTitle>
+            <CardDescription className="pt-1 text-base">กรอกข้อมูลบัญชีเพื่อเข้าสู่ระบบเช็กชื่อ</CardDescription>
           </CardHeader>
-          <CardContent className="px-0">
+          <CardContent>
             {error && (
               <Alert className="mb-6 border-red-200 bg-red-50 text-red-700">
                 <AlertCircle className="absolute left-4 top-4 size-4" />
@@ -93,23 +100,23 @@ export default function LoginPage() {
             )}
             <form onSubmit={onSubmit} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
-                <div className="relative">
-                  <UserRound className="absolute left-3.5 top-3 size-4 text-muted-foreground" />
-                  <Input id="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="กรอกชื่อผู้ใช้" className="h-11 pl-10" required />
+                <Label htmlFor="username">ชื่อผู้ใช้ <span className="font-normal text-muted-foreground">(Username)</span></Label>
+                <div className="group relative">
+                  <UserRound className="absolute left-3.5 top-3.5 size-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
+                  <Input id="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="กรอกชื่อผู้ใช้" className="h-12 pl-10 transition-shadow group-focus-within:shadow-[0_8px_24px_rgba(49,87,213,.10)]" required />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <LockKeyhole className="absolute left-3.5 top-3.5 size-4 text-muted-foreground" />
-                  <Input id="password" type={showPassword ? "text" : "password"} autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="กรอกรหัสผ่าน" className="h-11 px-10" required />
-                  <button type="button" onClick={() => setShowPassword((value) => !value)} className="absolute right-3 top-2.5 rounded-md p-1 text-muted-foreground hover:text-foreground" aria-label={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}>
+                <Label htmlFor="password">รหัสผ่าน <span className="font-normal text-muted-foreground">(Password)</span></Label>
+                <div className="group relative">
+                  <LockKeyhole className="absolute left-3.5 top-4 size-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
+                  <Input id="password" type={showPassword ? "text" : "password"} autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="กรอกรหัสผ่าน" className="h-12 px-10 transition-shadow group-focus-within:shadow-[0_8px_24px_rgba(49,87,213,.10)]" required />
+                  <button type="button" onClick={() => setShowPassword((value) => !value)} className="absolute right-3 top-3 rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary" aria-label={showPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}>
                     {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                   </button>
                 </div>
               </div>
-              <Button type="submit" className="h-11 w-full" disabled={loading}>
+              <Button type="submit" className="h-12 w-full bg-gradient-to-r from-primary to-[#5577e5] text-base shadow-[0_10px_28px_rgba(49,87,213,.28)] hover:from-[#294bc2] hover:to-[#4668d5]" disabled={loading}>
                 {loading && <Loader2 className="size-4 animate-spin" />}
                 {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
               </Button>

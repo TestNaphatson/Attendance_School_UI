@@ -28,6 +28,8 @@ type CheckInData = {
     id: number;
     status: "Present" | "Late" | "Absent" | "Leave";
     leaveType?: LeaveType | null;
+    leaveApprovalStatus?: "Pending" | "Approved" | "Rejected" | null;
+    leaveReviewedAt?: string | null;
     remark?: string;
     createdAt: string;
   };
@@ -166,6 +168,12 @@ export default function CheckInPage() {
   const isLate = data?.attendance?.status === "Late";
   const isAbsent = data?.attendance?.status === "Absent";
   const isLeave = data?.attendance?.status === "Leave";
+  const leaveApprovalStatus = data?.attendance?.leaveApprovalStatus;
+  const leaveApprovalLabel = leaveApprovalStatus === "Approved"
+    ? "Admin อนุมัติการลาแล้ว"
+    : leaveApprovalStatus === "Rejected"
+      ? "Admin ไม่อนุมัติการลา"
+      : "รอ Admin อนุมัติการลา";
   const mapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const mapUrl = position
     ? mapsApiKey
@@ -192,27 +200,41 @@ export default function CheckInPage() {
       </header>
 
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mb-8 text-center">
-          <Badge className="mb-4 border-primary/20 bg-primary/10 text-primary"><CalendarDays className="mr-1.5 size-3.5" />{thaiDate(data?.date ?? today())}</Badge>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">เช็กอินเข้าเรียน</h1>
-          <p className="mt-3 text-muted-foreground">ภายใน 08:30 = มา · หลัง 08:30 = สาย · รอบวันใหม่เริ่มเวลา 03:00 น.</p>
+        <div className="mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-[#243b91] via-[#3152b8] to-[#5f7df1] p-6 text-white shadow-xl shadow-blue-900/10 sm:p-8">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <Badge className="mb-3 border-white/20 bg-white/15 px-2 py-0.5 text-[10px] text-white sm:text-xs"><CalendarDays className="mr-1 size-3" />{thaiDate(data?.date ?? today())}</Badge>
+              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">สวัสดี {data?.student.firstName || user.fullName || "นักเรียน"}</h1>
+              <p className="mt-2 max-w-xl text-xs leading-5 text-blue-100 sm:text-sm sm:leading-6">เช็กสถานะของวันนี้ แล้วเลือกเช็กอินหรือแจ้งลาได้จากเมนูด้านล่าง</p>
+            </div>
+            <div className="self-start rounded-xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+              <p className="text-[10px] font-medium text-blue-100 sm:text-xs">เวลาประเทศไทย</p>
+              <p className="mt-0.5 text-2xl font-bold tabular-nums">{now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" })}</p>
+              <p className="mt-0.5 text-[10px] text-blue-100 sm:text-xs">เช็กอินก่อน 08:30 น. = มาเรียน</p>
+            </div>
+          </div>
         </div>
 
         {error && <Alert className="mx-auto mb-5 max-w-2xl border-red-200 bg-red-50 text-red-700"><AlertCircle className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>เกิดข้อผิดพลาด</AlertTitle><AlertDescription>{error}</AlertDescription></div></Alert>}
         {leaveMessage && <Alert className="mx-auto mb-5 max-w-2xl border-emerald-200 bg-emerald-50 text-emerald-700"><CheckCircle2 className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>ส่งคำขอแล้ว</AlertTitle><AlertDescription>{leaveMessage}</AlertDescription></div></Alert>}
 
         <div className="mx-auto grid max-w-2xl gap-5">
-          <Card>
-            <CardHeader className="border-b">
-              <CardTitle className="flex items-center gap-2"><FileText className="size-5 text-primary" />รายการที่ต้องการทำ</CardTitle>
-              <CardDescription>เลือกหัวข้อขออนุมัติลาเพื่อแสดงแบบฟอร์มการลา</CardDescription>
+          {!data?.checkedIn && <Card className="overflow-hidden border-0 shadow-[0_8px_32px_rgba(25,38,70,.08)]">
+            <CardHeader className="border-b bg-muted/30">
+              <div className="flex items-start gap-3">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary"><FileText className="size-5" /></span>
+                <div><CardTitle>วันนี้ต้องการทำอะไร?</CardTitle><CardDescription className="mt-1">เลือกเพียงหนึ่งรายการต่อวัน</CardDescription></div>
+              </div>
             </CardHeader>
             <CardContent className="pt-6">
-              <Label htmlFor="requestTopic">หัวข้อ</Label>
-              <Select id="requestTopic" value={requestTopic} onChange={(event) => { setRequestTopic(event.target.value); setError(""); }} className="mt-2">
-                <option value="">เช็กอินเข้าเรียนตามปกติ</option>
-                <option value="leave">ขออนุมัติลา</option>
-              </Select>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <button type="button" onClick={() => { setRequestTopic(""); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic !== "leave" ? "border-primary bg-primary/5 ring-2 ring-primary/10" : "border-border hover:border-primary/40"} disabled:cursor-not-allowed disabled:opacity-60`}>
+                  <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-emerald-100 text-emerald-700"><CheckCircle2 className="size-6" /></span><span><strong className="block">เช็กอินเข้าเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">บันทึกว่ามาเรียนวันนี้</span></span></span>
+                </button>
+                <button type="button" onClick={() => { setRequestTopic("leave"); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "leave" ? "border-blue-500 bg-blue-50 ring-2 ring-blue-100" : "border-border hover:border-blue-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
+                  <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-blue-100 text-blue-700"><FileText className="size-6" /></span><span><strong className="block">แจ้งลาเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">ส่งเหตุผลให้ Admin ตรวจสอบ</span></span></span>
+                </button>
+              </div>
 
               {requestTopic === "leave" && (
                 <form onSubmit={submitLeaveRequest} className="mt-6 space-y-5 border-t pt-6">
@@ -228,12 +250,12 @@ export default function CheckInPage() {
                     <textarea id="leaveReason" value={leaveReason} onChange={(event) => setLeaveReason(event.target.value)} rows={4} maxLength={500} required placeholder="กรุณาระบุรายละเอียดหรือเหตุผลการลา..." className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring" />
                     <p className="text-right text-xs text-muted-foreground">{leaveReason.length}/500</p>
                   </div>
-                  <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 text-xs leading-5 text-blue-800">คำขอจะอยู่ในสถานะ “รออนุมัติ” จนกว่าผู้ดูแลระบบจะตรวจสอบ</div>
-                  <Button type="submit" className="w-full" disabled={leaveSaving || !leaveReason.trim()}>{leaveSaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><Send className="size-4" />ส่งคำขออนุมัติลา</>}</Button>
+                  <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm leading-6 text-blue-800"><strong className="block">หลังส่งคำขอแล้วจะเกิดอะไรขึ้น?</strong><span>สถานะจะเป็น “รออนุมัติ” และสามารถกลับมาตรวจผลจากหน้านี้ได้</span></div>
+                  <Button type="submit" className="h-12 w-full text-base" disabled={leaveSaving || !leaveReason.trim()}>{leaveSaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><Send className="size-4" />ส่งคำขออนุมัติลา</>}</Button>
                 </form>
               )}
             </CardContent>
-          </Card>
+          </Card>}
 
           {requestTopic !== "leave" && <Card className="overflow-hidden border-0 shadow-[0_10px_40px_rgba(25,38,70,.1)]">
             <div className={`h-1.5 ${data?.checkedIn ? isLeave ? "bg-blue-500" : isAbsent ? "bg-red-500" : isLate ? "bg-amber-500" : "bg-emerald-500" : "bg-primary"}`} />
@@ -245,12 +267,12 @@ export default function CheckInPage() {
               ) : (
                 <div className="grid size-20 place-items-center rounded-full bg-primary/10 text-primary"><Clock3 className="size-9" /></div>
               )}
-              <CardTitle className="pt-3 text-2xl">{isLeave ? "บันทึกการลาเรียบร้อยแล้ว" : data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
+              <CardTitle className="pt-3 text-2xl">{isLeave ? leaveApprovalLabel : data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
               <CardDescription>{data?.checkedIn ? `บันทึกเวลา ${checkInTime} น.` : now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Asia/Bangkok" }) + " น."}</CardDescription>
               {data?.checkedIn && (
                 <Badge className={isLeave ? "mt-2 border-blue-200 bg-blue-50 text-blue-700" : isAbsent ? "mt-2 border-red-200 bg-red-50 text-red-700" : isLate ? "mt-2 border-amber-200 bg-amber-50 text-amber-700" : "mt-2 border-emerald-200 bg-emerald-50 text-emerald-700"}>
                   {isLeave ? <FileText className="mr-1.5 size-3.5" /> : isLate || isAbsent ? <Clock3 className="mr-1.5 size-3.5" /> : <CheckCircle2 className="mr-1.5 size-3.5" />}
-                  {isLeave ? "ลาเรียน" : isAbsent ? "ขาดเรียน" : isLate ? "มาสาย" : "มาเรียน"}
+                  {isLeave ? leaveApprovalLabel : isAbsent ? "ขาดเรียน" : isLate ? "มาสาย" : "มาเรียน"}
                 </Badge>
               )}
             </CardHeader>

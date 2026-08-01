@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
-const empty: DashboardSummary = { date: attendanceToday(), totalStudents: 0, present: 0, late: 0, leave: 0, absent: 0, recorded: 0, notRecorded: 0 };
+const empty: DashboardSummary = { date: attendanceToday(), totalStudents: 0, present: 0, late: 0, leave: 0, absent: 0, recorded: 0, notRecorded: 0, leaveStudents: [] };
 
 export default function DashboardPage() {
   const [date, setDate] = useState(attendanceToday());
@@ -97,6 +97,21 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      <Card className="overflow-hidden">
+        <CardHeader className="border-b bg-blue-50/50 sm:flex-row sm:items-center sm:justify-between">
+          <div><CardTitle className="flex items-center gap-2"><School className="size-5 text-blue-600" />นักเรียนที่ลา</CardTitle><CardDescription className="mt-1">รายชื่อการลาของ {thaiDate(date)}</CardDescription></div>
+          <span className="w-fit rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">{data.leaveStudents.length} คน</span>
+        </CardHeader>
+        <CardContent className="p-0">
+          {loading ? <div className="grid h-32 place-items-center"><Loader2 className="size-6 animate-spin text-primary" /></div>
+          : data.leaveStudents.length === 0 ? <div className="grid h-36 place-items-center px-5 text-center"><div><CheckCircle2 className="mx-auto size-8 text-emerald-500" /><p className="mt-3 font-semibold">วันนี้ยังไม่มีนักเรียนลา</p><p className="mt-1 text-sm text-muted-foreground">รายชื่อจะปรากฏที่นี่เมื่อนักเรียนส่งคำขอลา</p></div></div>
+          : <div className="divide-y">{data.leaveStudents.map((student) => <div key={student.id} className="flex flex-col gap-3 px-5 py-4 transition-colors hover:bg-blue-50/30 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-100 font-bold text-blue-700">{student.firstName[0]}</span><div><p className="font-semibold">{student.firstName} {student.lastName}</p><p className="text-sm text-muted-foreground">{student.studentCode} · {student.classroom}</p></div></div>
+            <div className="sm:text-right"><p className="font-medium text-blue-700">{student.leaveType === "Sick" ? "ลาป่วย" : student.leaveType === "Personal" ? "ลากิจ" : "ลาเรียน"}</p><p className="text-sm text-muted-foreground">{student.leaveApprovalStatus === "Approved" ? "อนุมัติแล้ว" : student.leaveApprovalStatus === "Rejected" ? "ไม่อนุมัติ" : "รออนุมัติ"}{student.reason ? ` · ${student.reason}` : ""}</p></div>
+          </div>)}</div>}
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -9,6 +9,16 @@ export type DashboardSummary = {
   absent: number;
   recorded: number;
   notRecorded: number;
+  leaveStudents: Array<{
+    id: number;
+    studentCode: string;
+    firstName: string;
+    lastName: string;
+    classroom: string;
+    leaveType?: LeaveType | null;
+    leaveApprovalStatus?: LeaveApprovalStatus | null;
+    reason?: string | null;
+  }>;
 };
 
 export type Student = {

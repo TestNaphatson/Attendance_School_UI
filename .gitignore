@@ -1,0 +1,9 @@
+node_modules
+.next/
+node_modules/
+.env*
+.next-dev.*.log
+.api-dev.*.log
+.next/
+node_modules/
+.env*

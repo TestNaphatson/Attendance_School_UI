@@ -1,0 +1,192 @@
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5134
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\Naphatson.s.TKC\source\repos\TestNaphatson\SchoolAttendance\SchoolAttendance.Api\SchoolAttendance.Api\bin\Debug\net8.0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (37ms) [Parameters=[@__attendanceDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT s.id
+      FROM students AS s
+      WHERE s.is_active AND NOT EXISTS (
+          SELECT 1
+          FROM attendances AS a
+          WHERE a.student_id = s.id AND a.attendance_date = @__attendanceDate_0)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT u.id, u.created_at, u.full_name, u.password_hash, u.role, u.username
+      FROM users AS u
+      WHERE u.id = @__userId_0 AND u.role = 'Student'
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__user_Username_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT s.id, s.classroom, s.created_at, s.first_name, s.is_active, s.last_name, s.student_code
+      FROM students AS s
+      WHERE s.student_code = @__user_Username_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__student_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      DELETE FROM attendances AS a
+      WHERE a.student_id = @__student_Id_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      DELETE FROM students
+      WHERE id = @p0;
+      DELETE FROM users
+      WHERE id = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM users AS u
+      LEFT JOIN students AS s ON u.username = s.student_code
+      WHERE u.role = 'Student'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT u.id AS "Id", u.username AS "Username", u.full_name AS "FullName", u.role AS "Role", u.created_at AS "CreatedAt", CASE
+          WHEN s.id IS NULL THEN u.username
+          ELSE s.student_code
+      END AS "StudentCode", s.first_name AS "FirstName", s.last_name AS "LastName", s.classroom AS "Classroom", s.id IS NOT NULL AND s.is_active AS "IsActive"
+      FROM users AS u
+      LEFT JOIN students AS s ON u.username = s.student_code
+      WHERE u.role = 'Student'
+      ORDER BY u.username
+      LIMIT @__p_1 OFFSET @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM users AS u
+      LEFT JOIN students AS s ON u.username = s.student_code
+      WHERE u.role = 'Student'
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT u.id AS "Id", u.username AS "Username", u.full_name AS "FullName", u.role AS "Role", u.created_at AS "CreatedAt", CASE
+          WHEN s.id IS NULL THEN u.username
+          ELSE s.student_code
+      END AS "StudentCode", s.first_name AS "FirstName", s.last_name AS "LastName", s.classroom AS "Classroom", s.id IS NOT NULL AND s.is_active AS "IsActive"
+      FROM users AS u
+      LEFT JOIN students AS s ON u.username = s.student_code
+      WHERE u.role = 'Student'
+      ORDER BY u.username
+      LIMIT @__p_1 OFFSET @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT s.id AS "Id", s.student_code AS "StudentCode", s.first_name AS "FirstName", s.last_name AS "LastName", s.classroom AS "Classroom"
+      FROM students AS s
+      WHERE s.is_active AND NOT EXISTS (
+          SELECT 1
+          FROM users AS u
+          WHERE u.username = s.student_code)
+      ORDER BY s.student_code
+      LIMIT @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT count(*)::int
+      FROM students AS s
+      WHERE s.is_active
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__selectedDate_0='?' (DbType = Date)], CommandType='Text', CommandTimeout='30']
+      SELECT a.status AS "Status", count(*)::int AS "Total"
+      FROM attendances AS a
+      WHERE a.attendance_date = @__selectedDate_0
+      GROUP BY a.status

@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { AlertCircle, CheckCircle2, ChevronLeft, ChevronRight, Download, Eye, EyeOff, FileSpreadsheet, KeyRound, Loader2, Search, ShieldCheck, Trash2, Upload, UserPlus, UserRound, X } from "lucide-react";
+import { AlertCircle, CheckCircle2, ChevronLeft, ChevronRight, Download, Eye, EyeOff, FileSpreadsheet, KeyRound, Loader2, Pencil, Search, ShieldCheck, Trash2, Upload, UserPlus, UserRound, X } from "lucide-react";
 import { ApiError, api } from "@/lib/api";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -136,6 +136,14 @@ export default function StudentAccountsPage() {
   const [accountRefresh, setAccountRefresh] = useState(0);
   const [statusUpdating, setStatusUpdating] = useState<number | null>(null);
   const [deletingAccount, setDeletingAccount] = useState<number | null>(null);
+  const [editingAccount, setEditingAccount] = useState<StudentAccount | null>(null);
+  const [editSaving, setEditSaving] = useState(false);
+  const [editForm, setEditForm] = useState({ studentCode: "", firstName: "", lastName: "", classroom: "" });
+  const [showDeleteAll, setShowDeleteAll] = useState(false);
+  const [deletingAll, setDeletingAll] = useState(false);
+  const [deleteAllComplete, setDeleteAllComplete] = useState(false);
+  const [pendingDelete, setPendingDelete] = useState<StudentAccount | null>(null);
+  const [deleteComplete, setDeleteComplete] = useState(false);
   const [csvRows, setCsvRows] = useState<CsvAccount[]>([]);
   const [csvFileName, setCsvFileName] = useState("");
   const [csvErrors, setCsvErrors] = useState<ImportError[]>([]);
@@ -314,6 +322,36 @@ export default function StudentAccountsPage() {
     }
   }
 
+  function openEditAccount(account: StudentAccount) {
+    setEditingAccount(account);
+    setEditForm({ studentCode: account.studentCode || account.username, firstName: account.firstName || "", lastName: account.lastName || "", classroom: account.classroom || "" });
+    setError("");
+  }
+
+  async function updateStudentAccount(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!editingAccount) return;
+    setEditSaving(true); setError("");
+    try {
+      await api(`/AdminStudentAccounts/${editingAccount.id}`, { method: "PUT", body: JSON.stringify(editForm) });
+      setAccounts((current) => ({ ...current, items: current.items.map((item) => item.id === editingAccount.id ? { ...item, username: editForm.studentCode.trim(), studentCode: editForm.studentCode.trim(), firstName: editForm.firstName.trim(), lastName: editForm.lastName.trim(), fullName: `${editForm.firstName.trim()} ${editForm.lastName.trim()}`, classroom: editForm.classroom.trim() } : item) }));
+      setEditingAccount(null); setAccountRefresh((value) => value + 1);
+    } catch (err) { setError(err instanceof Error ? err.message : "ไม่สามารถแก้ไขข้อมูลนักเรียนได้"); }
+    finally { setEditSaving(false); }
+  }
+
+  async function deleteAllStudentAccounts() {
+    setDeletingAll(true); setError("");
+    try {
+      await new Promise((resolve) => window.setTimeout(resolve, 700));
+      await api("/AdminStudentAccounts/all", { method: "DELETE" });
+      setAccounts({ page: 1, pageSize: 10, totalItems: 0, totalPages: 0, items: [] });
+      setDeleteAllComplete(true);
+      await new Promise((resolve) => window.setTimeout(resolve, 1000));
+      setShowDeleteAll(false); setDeleteAllComplete(false); setAccountRefresh((value) => value + 1);
+    } catch (err) { setError(err instanceof Error ? err.message : "ไม่สามารถลบนักเรียนทั้งหมดได้"); }
+    finally { setDeletingAll(false); }
+  }
   async function updateAccountStatus(account: StudentAccount) {
     setStatusUpdating(account.id);
     try {
@@ -335,11 +373,6 @@ export default function StudentAccountsPage() {
   }
 
   async function deleteStudentAccount(account: StudentAccount) {
-    const confirmed = window.confirm(
-      `ยืนยันการลบ ${account.fullName || account.username} ออกจากฐานข้อมูล?\nข้อมูลการเข้าเรียนของนักเรียนคนนี้จะถูกลบด้วยและไม่สามารถกู้คืนได้`,
-    );
-    if (!confirmed) return;
-
     setDeletingAccount(account.id);
     setError("");
     try {
@@ -357,6 +390,10 @@ export default function StudentAccountsPage() {
         };
       });
       setAccountRefresh((value) => value + 1);
+      setDeleteComplete(true);
+      await new Promise((resolve) => window.setTimeout(resolve, 950));
+      setPendingDelete(null);
+      setDeleteComplete(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "ไม่สามารถลบนักเรียนได้");
     } finally {
@@ -543,6 +580,7 @@ export default function StudentAccountsPage() {
               <CardTitle className="flex items-center gap-2"><KeyRound className="size-5 text-primary" />บัญชีนักเรียนในระบบ</CardTitle>
               <CardDescription className="mt-2">ข้อมูลจาก API ทั้งหมด {accounts.totalItems.toLocaleString("th-TH")} บัญชี</CardDescription>
             </div>
+            <Button type="button" variant="destructive" onClick={() => { setDeleteAllComplete(false); setShowDeleteAll(true); }} disabled={accountsLoading || accounts.totalItems === 0}><Trash2 className="size-4" />ลบนักเรียนทั้งหมด</Button>
             <div className="relative w-full lg:w-80">
               <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
               <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="ค้นหา Username ชื่อ หรือห้อง..." className="pl-9" />
@@ -583,12 +621,13 @@ export default function StudentAccountsPage() {
                         <span className={`size-2 rounded-full ${account.isActive ? "bg-emerald-500" : "bg-slate-400"}`} />
                         {account.isActive ? "Active" : "Inactive"}
                       </Button>
+                       <Button type="button" size="sm" variant="outline" disabled={deletingAccount === account.id || statusUpdating === account.id} onClick={() => openEditAccount(account)} className="border-blue-200 text-blue-700 hover:bg-blue-50"><Pencil className="size-4" />แก้ไข</Button>
                       <Button
                         type="button"
                         size="sm"
                         variant="outline"
                         disabled={deletingAccount === account.id || statusUpdating === account.id}
-                        onClick={() => deleteStudentAccount(account)}
+                        onClick={() => { setDeleteComplete(false); setPendingDelete(account); }}
                         className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700"
                         aria-label={`ลบ ${account.fullName || account.username}`}
                       >
@@ -688,6 +727,58 @@ export default function StudentAccountsPage() {
           </Card>
         </form>
       </div>
-    </div>
+      {editingAccount && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/55 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="edit-account-title">
+          <form onSubmit={updateStudentAccount} className="w-full max-w-lg rounded-3xl border bg-white p-6 shadow-2xl delete-modal-enter sm:p-7">
+            <div className="flex items-start justify-between gap-4"><div><span className="grid size-12 place-items-center rounded-2xl bg-blue-100 text-blue-700"><Pencil className="size-6" /></span><h2 id="edit-account-title" className="mt-4 text-xl font-bold">แก้ไขข้อมูลนักเรียน</h2><p className="mt-1 text-sm text-muted-foreground">บันทึกแล้วข้อมูลจะถูก Update ลงฐานข้อมูลทันที</p></div><button type="button" onClick={() => setEditingAccount(null)} disabled={editSaving} className="rounded-xl p-2 text-muted-foreground hover:bg-muted"><X className="size-5" /></button></div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="space-y-2"><Label htmlFor="editStudentCode">รหัสนักเรียน</Label><Input id="editStudentCode" value={editForm.studentCode} onChange={(event) => setEditForm((value) => ({ ...value, studentCode: event.target.value }))} maxLength={30} required /></div>
+              <div className="space-y-2"><Label htmlFor="editClassroom">ห้องเรียน</Label><Input id="editClassroom" value={editForm.classroom} onChange={(event) => setEditForm((value) => ({ ...value, classroom: event.target.value }))} maxLength={50} required /></div>
+              <div className="space-y-2"><Label htmlFor="editFirstName">ชื่อ</Label><Input id="editFirstName" value={editForm.firstName} onChange={(event) => setEditForm((value) => ({ ...value, firstName: event.target.value }))} maxLength={100} required /></div>
+              <div className="space-y-2"><Label htmlFor="editLastName">นามสกุล</Label><Input id="editLastName" value={editForm.lastName} onChange={(event) => setEditForm((value) => ({ ...value, lastName: event.target.value }))} maxLength={100} required /></div>
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-3"><Button type="button" variant="outline" onClick={() => setEditingAccount(null)} disabled={editSaving}>ยกเลิก</Button><Button type="submit" disabled={editSaving}>{editSaving ? <><Loader2 className="size-4 animate-spin" />กำลังบันทึก...</> : <><Pencil className="size-4" />บันทึกการแก้ไข</>}</Button></div>
+          </form>
+        </div>
+      )}
+
+      {showDeleteAll && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/55 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="delete-all-accounts-title">
+          <div className="w-full max-w-md rounded-3xl border bg-white p-6 shadow-2xl delete-modal-enter sm:p-7">
+            {deleteAllComplete ? <div className="py-5 text-center delete-success-pop"><span className="mx-auto grid size-20 place-items-center rounded-full bg-emerald-100 text-emerald-600"><CheckCircle2 className="size-11" /></span><h2 className="mt-5 text-xl font-bold text-emerald-700">ลบนักเรียนทั้งหมดแล้ว</h2></div> : <><div className="relative mx-auto mb-5 h-28 w-32 overflow-hidden"><div className={`absolute left-1/2 top-0 w-20 -translate-x-1/2 space-y-1.5 ${deletingAll ? "student-stack-drop" : "student-stack-float"}`}>{[0,1,2].map((item) => <div key={item} className="h-5 rounded-md border border-blue-200 bg-blue-50 shadow-sm" />)}</div><div className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-red-600 ${deletingAll ? "trash-catch" : ""}`}><Trash2 className="size-14" /></div></div><div className="text-center"><h2 id="delete-all-accounts-title" className="text-xl font-bold">ลบนักเรียนทั้งหมด?</h2><p className="mt-2 text-sm leading-6 text-muted-foreground">บัญชีนักเรียน รายชื่อนักเรียน และประวัติที่เกี่ยวข้องจะถูกลบ และไม่สามารถกู้คืนได้</p></div><div className="mt-6 grid grid-cols-2 gap-3"><Button type="button" variant="outline" onClick={() => setShowDeleteAll(false)} disabled={deletingAll}>ยกเลิก</Button><Button type="button" variant="destructive" onClick={deleteAllStudentAccounts} disabled={deletingAll}>{deletingAll ? <><Loader2 className="size-4 animate-spin" />กำลังลบ...</> : <><Trash2 className="size-4" />ยืนยันการลบ</>}</Button></div></>}
+          </div>
+        </div>
+      )}
+      {pendingDelete && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/55 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="delete-account-title" onMouseDown={(event) => { if (event.target === event.currentTarget && deletingAccount === null) setPendingDelete(null); }}>
+          <div className="w-full max-w-md rounded-3xl border border-white/70 bg-white p-6 shadow-2xl delete-modal-enter sm:p-7">
+            {deleteComplete ? (
+              <div className="py-5 text-center delete-success-pop">
+                <span className="mx-auto grid size-20 place-items-center rounded-full bg-emerald-100 text-emerald-600"><CheckCircle2 className="size-11" /></span>
+                <h2 id="delete-account-title" className="mt-5 text-xl font-bold text-emerald-700">ลบนักเรียนเรียบร้อยแล้ว</h2>
+                <p className="mt-2 text-sm text-muted-foreground">ข้อมูลถูกนำออกจากระบบแล้ว</p>
+              </div>
+            ) : (
+              <>
+                <div className="relative mx-auto mb-5 h-28 w-32 overflow-hidden" aria-hidden="true">
+                  <div className={`absolute left-1/2 top-0 w-20 -translate-x-1/2 space-y-1.5 ${deletingAccount !== null ? "student-stack-drop" : "student-stack-float"}`}>
+                    {[0, 1, 2].map((item) => <div key={item} className="h-5 rounded-md border border-blue-200 bg-blue-50 shadow-sm" />)}
+                  </div>
+                  <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-red-600 ${deletingAccount !== null ? "trash-catch" : ""}`}><Trash2 className="size-14" /></div>
+                </div>
+                <div className="text-center">
+                  <h2 id="delete-account-title" className="text-xl font-bold">ยืนยันการลบนักเรียน?</h2>
+                  <p className="mt-2 font-semibold text-foreground">{pendingDelete.fullName || pendingDelete.username}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">บัญชีและประวัติการเข้าเรียนจะถูกลบออกจากฐานข้อมูล และไม่สามารถกู้คืนได้</p>
+                </div>
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <Button type="button" variant="outline" onClick={() => setPendingDelete(null)} disabled={deletingAccount !== null}>ยกเลิก</Button>
+                  <Button type="button" variant="destructive" onClick={() => deleteStudentAccount(pendingDelete)} disabled={deletingAccount !== null}>{deletingAccount !== null ? <><Loader2 className="size-4 animate-spin" />กำลังลบ...</> : <><Trash2 className="size-4" />ยืนยันการลบ</>}</Button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}    </div>
   );
 }

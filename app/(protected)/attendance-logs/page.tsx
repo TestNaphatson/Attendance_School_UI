@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AlertCircle, CalendarRange, Download, FileSpreadsheet, Loader2, RefreshCw } from "lucide-react";
+import { AlertCircle, CalendarRange, Download, FileDown, FileSpreadsheet, Loader2, RefreshCw } from "lucide-react";
 import { api } from "@/lib/api";
 import { AttendanceLog, AttendanceLogResponse, AttendanceStatus } from "@/lib/types";
 import { attendanceToday } from "@/lib/utils";
@@ -89,26 +89,34 @@ export default function AttendanceLogsPage() {
     URL.revokeObjectURL(url);
   }
 
+  function downloadPdf() {
+    const previousTitle = document.title;
+    document.title = `report-${fromDate}-to-${toDate}`;
+    window.print();
+    window.setTimeout(() => { document.title = previousTitle; }, 500);
+  }
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="report-print-page mx-auto max-w-7xl space-y-6">
       <div>
         <p className="mb-1 text-sm font-medium text-primary">สำหรับผู้ดูแลระบบ</p>
         <h1 className="text-2xl font-bold sm:text-3xl">Report</h1>
         <p className="mt-2 text-sm text-muted-foreground">ข้อมูลแต่ละวันจะถูกเก็บเป็น Log ถาวร ระบบเริ่มรอบวันใหม่เวลา 03:00 น. ตามเวลาประเทศไทย</p>
+        <div className="report-print-header hidden"><p>School Attendance Report</p><p>ช่วงวันที่ {fromDate} ถึง {toDate} · รวม {logs.length.toLocaleString("th-TH")} รายการ</p></div>
       </div>
 
       {error && <Alert className="border-red-200 bg-red-50 text-red-700"><AlertCircle className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>โหลดข้อมูลไม่สำเร็จ</AlertTitle><AlertDescription>{error}</AlertDescription></div></Alert>}
 
-      <Card>
+      <Card className="report-controls">
         <CardHeader className="border-b">
           <CardTitle className="flex items-center gap-2"><CalendarRange className="size-5 text-primary" />เลือกช่วงวันที่</CardTitle>
           <CardDescription>ค้นหา Log และดาวน์โหลดเป็นไฟล์ CSV ภาษาไทย</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4 pt-6 sm:grid-cols-[1fr_1fr_auto_auto] sm:items-end">
+        <CardContent className="grid gap-4 pt-6 sm:grid-cols-[1fr_1fr_auto_auto_auto] sm:items-end">
           <div className="space-y-2"><Label htmlFor="fromDate">ตั้งแต่วันที่</Label><Input id="fromDate" type="date" value={fromDate} max={toDate} onChange={(event) => setFromDate(event.target.value)} /></div>
           <div className="space-y-2"><Label htmlFor="toDate">ถึงวันที่</Label><Input id="toDate" type="date" value={toDate} min={fromDate} onChange={(event) => setToDate(event.target.value)} /></div>
           <Button type="button" variant="outline" onClick={load} disabled={loading}><RefreshCw className={loading ? "size-4 animate-spin" : "size-4"} />ค้นหา</Button>
           <Button type="button" onClick={downloadCsv} disabled={loading || logs.length === 0}><Download className="size-4" />ดาวน์โหลด CSV</Button>
+          <Button type="button" variant="outline" onClick={downloadPdf} disabled={loading || logs.length === 0}><FileDown className="size-4" />ดาวน์โหลด PDF</Button>
         </CardContent>
       </Card>
 

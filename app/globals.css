@@ -131,3 +131,24 @@ main { animation: page-enter .42s cubic-bezier(.22, 1, .36, 1) both; }
 .trash-catch { animation: trash-catch .7s ease-in-out both; }
 @keyframes delete-success-pop { from { opacity: 0; transform: scale(.78); } to { opacity: 1; transform: scale(1); } }
 .delete-success-pop { animation: delete-success-pop .32s cubic-bezier(.22, 1, .36, 1) both; }
+
+@media print {
+  @page { size: A4 landscape; margin: 12mm; }
+  body { background: #fff !important; }
+  body::before, body::after { display: none !important; }
+  body:has(.report-print-page) aside,
+  body:has(.report-print-page) > div > div > header,
+  .report-controls { display: none !important; }
+  body:has(.report-print-page) .lg\:pl-72 { padding-left: 0 !important; }
+  body:has(.report-print-page) main { padding: 0 !important; animation: none !important; }
+  .report-print-page { max-width: none !important; }
+  .report-print-page > div:first-child > p { display: none !important; }
+  .report-print-page > div:first-child > h1 { font-size: 22pt !important; }
+  .report-print-header { display: block !important; margin-top: 6px; color: #475569; font-size: 10pt; }
+  .report-print-page table { width: 100% !important; font-size: 8.5pt !important; }
+  .report-print-page th, .report-print-page td { padding: 7px 8px !important; }
+  .report-print-page tr { break-inside: avoid; }
+  .report-print-page .shadow-sm,
+  .report-print-page .shadow-xl,
+  .report-print-page .shadow-2xl { box-shadow: none !important; }
+}

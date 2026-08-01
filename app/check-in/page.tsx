@@ -142,6 +142,7 @@ export default function CheckInPage() {
       setLeaveReason("");
       setLeaveType("Sick");
       await load();
+      setRequestTopic("");
     } catch (err) {
       setError(err instanceof Error ? err.message : "ส่งคำขอลาไม่สำเร็จ");
     } finally {
@@ -244,7 +245,7 @@ export default function CheckInPage() {
               ) : (
                 <div className="grid size-20 place-items-center rounded-full bg-primary/10 text-primary"><Clock3 className="size-9" /></div>
               )}
-              <CardTitle className="pt-3 text-2xl">{data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
+              <CardTitle className="pt-3 text-2xl">{isLeave ? "บันทึกการลาเรียบร้อยแล้ว" : data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
               <CardDescription>{data?.checkedIn ? `บันทึกเวลา ${checkInTime} น.` : now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Asia/Bangkok" }) + " น."}</CardDescription>
               {data?.checkedIn && (
                 <Badge className={isLeave ? "mt-2 border-blue-200 bg-blue-50 text-blue-700" : isAbsent ? "mt-2 border-red-200 bg-red-50 text-red-700" : isLate ? "mt-2 border-amber-200 bg-amber-50 text-amber-700" : "mt-2 border-emerald-200 bg-emerald-50 text-emerald-700"}>
@@ -267,7 +268,7 @@ export default function CheckInPage() {
                 </div>
               </div>
               <Button className={`h-14 w-full text-base ${data?.checkedIn ? isLeave ? "bg-blue-600 hover:bg-blue-600" : isAbsent ? "bg-red-600 hover:bg-red-600" : isLate ? "bg-amber-600 hover:bg-amber-600" : "bg-emerald-600 hover:bg-emerald-600" : ""}`} disabled={loading || saving || data?.checkedIn} onClick={checkIn}>
-                {saving ? <><Loader2 className="size-5 animate-spin" />กำลังเช็กอิน...</> : data?.checkedIn ? <><CheckCircle2 className="size-5" />เช็กอินวันนี้แล้ว</> : <><MapPin className="size-5" />เช็กอินเข้าเรียน</>}
+                {saving ? <><Loader2 className="size-5 animate-spin" />กำลังเช็กอิน...</> : isLeave ? <><FileText className="size-5" />วันนี้บันทึกการลาแล้ว</> : data?.checkedIn ? <><CheckCircle2 className="size-5" />เช็กอินวันนี้แล้ว</> : <><MapPin className="size-5" />เช็กอินเข้าเรียน</>}
               </Button>
               <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="size-3.5" />เวลาตัดสินสถานะอ้างอิงจากเวลาเซิร์ฟเวอร์ประเทศไทย</p>
             </CardContent>

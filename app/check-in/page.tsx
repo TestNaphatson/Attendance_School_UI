@@ -230,7 +230,6 @@ export default function CheckInPage() {
   const checkOutTime = data?.attendance?.checkedOutAt
     ? new Intl.DateTimeFormat("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" }).format(new Date(data.attendance.checkedOutAt))
     : null;
-  const checkOutStatusLabel = data?.attendance?.checkOutStatus === "Early" ? "ออกก่อนเวลา" : "ออกเวลาปกติ";
   const isLate = data?.attendance?.status === "Late";
   const isAbsent = data?.attendance?.status === "Absent";
   const isLeave = data?.attendance?.status === "Leave";
@@ -272,17 +271,31 @@ export default function CheckInPage() {
       </header>
 
       <div className="mx-auto max-w-full px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mx-auto mb-6 max-w-[732px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#243b91] via-[#3152b8] to-[#5f7df1] p-4 text-white shadow-lg shadow-blue-900/10 sm:p-5">
+        <div className="mx-auto mb-6 max-w-[732px] overflow-hidden rounded-2xl bg-[#28508c] p-4 text-white shadow-[0_10px_28px_rgba(40,80,140,.14)] sm:p-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <Badge className="mb-2 border-white/20 bg-white/15 px-2 py-0.5 text-[10px] text-white sm:text-xs"><CalendarDays className="mr-1 size-3" />{thaiDate(data?.date ?? today())}</Badge>
-              <h1 className="text-xl font-bold tracking-tight sm:text-2xl">สวัสดี {data?.student.firstName || user.fullName || "นักเรียน"}</h1>
-              <p className="mt-1.5 max-w-md text-xs leading-5 text-blue-100 sm:text-sm">เช็กสถานะของวันนี้ แล้วเลือกเช็กอินหรือแจ้งลาได้จากเมนูด้านล่าง</p>
+            <div className="min-w-0 flex-1">
+              <Badge className="mb-3 border-white/20 bg-white/15 px-2 py-0.5 text-[10px] text-white sm:text-xs"><CalendarDays className="mr-1 size-3" />{thaiDate(data?.date ?? today())}</Badge>
+              <div className="flex items-center gap-3.5">
+                <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-[#f5c84c] text-lg font-bold text-[#14233b] ring-4 ring-white/10 sm:size-16 sm:text-xl" aria-label="รูปประจำตัวนักเรียน">
+                  {data?.student ? `${data.student.firstName[0] ?? ""}${data.student.lastName[0] ?? ""}` : (user.fullName || "น")[0]}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs text-blue-100">ยินดีต้อนรับ</p>
+                  <h1 className="truncate text-lg font-bold tracking-tight sm:text-2xl">
+                    {data?.student ? `${data.student.firstName} ${data.student.lastName}` : user.fullName || "นักเรียน"}
+                  </h1>
+                  <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-xs text-blue-100 sm:text-sm">
+                    <span>รหัส {data?.student.studentCode || "—"}</span>
+                    <span className="hidden text-white/35 sm:inline" aria-hidden="true">•</span>
+                    <span>ชั้นเรียน {data?.student.classroom || "—"}</span>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-3 max-w-md text-xs leading-5 text-blue-100 sm:text-sm">เช็กสถานะของวันนี้ แล้วเลือกเช็กอินหรือแจ้งลาได้จากเมนูด้านล่าง</p>
             </div>
-            <div className="self-start rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 backdrop-blur-sm">
+            <div className="self-start rounded-xl bg-white/10 px-3 py-2.5 ring-1 ring-white/15">
               <p className="text-[10px] font-medium text-blue-100 sm:text-xs">เวลาประเทศไทย</p>
               <p className="mt-0.5 text-xl font-bold tabular-nums">{now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" })}</p>
-              <p className="mt-0.5 text-[10px] text-blue-100 sm:text-xs">เช็กอินก่อน 08:30 น. = มาเรียน</p>
             </div>
           </div>
         </div>
@@ -360,15 +373,16 @@ export default function CheckInPage() {
               ) : (
                 <div className="grid size-20 place-items-center rounded-full bg-primary/10 text-primary"><Clock3 className="size-9" /></div>
               )}
-              <CardTitle className="pt-3 text-2xl">{isLeave ? leaveApprovalLabel : data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
-              <CardDescription>{data?.checkedIn ? `บันทึกเวลา ${checkInTime} น.` : now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Asia/Bangkok" }) + " น."}</CardDescription>
-              {data?.checkedIn && (
-                <Badge className={isLeave ? "mt-2 border-blue-200 bg-blue-50 text-blue-700" : isAbsent ? "mt-2 border-red-200 bg-red-50 text-red-700" : isLate ? "mt-2 border-amber-200 bg-amber-50 text-amber-700" : "mt-2 border-emerald-200 bg-emerald-50 text-emerald-700"}>
-                  {isLeave ? <FileText className="mr-1.5 size-3.5" /> : isLate || isAbsent ? <Clock3 className="mr-1.5 size-3.5" /> : <CheckCircle2 className="mr-1.5 size-3.5" />}
-                  {isLeave ? leaveApprovalLabel : isAbsent ? "ขาดเรียน" : isLate ? "มาสาย" : "มาเรียน"}
-                </Badge>
-              )}
-              {checkOutTime && <div className="flex flex-wrap items-center justify-center gap-2"><p className="text-sm font-medium text-slate-700">เวลาออกเรียน {checkOutTime} น.</p><Badge className={data?.attendance?.checkOutStatus === "Early" ? "border-amber-200 bg-amber-50 text-amber-700" : "border-emerald-200 bg-emerald-50 text-emerald-700"}>{checkOutStatusLabel}</Badge></div>}
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-3">
+                <CardTitle className="text-2xl">{isLeave ? leaveApprovalLabel : data?.checkedIn ? "เช็กอินเรียบร้อยแล้ว" : "พร้อมเช็กอิน"}</CardTitle>
+                {data?.checkedIn && (
+                  <Badge className={isLeave ? "border-blue-200 bg-blue-50 text-blue-700" : isAbsent ? "border-red-200 bg-red-50 text-red-700" : isLate ? "border-amber-200 bg-amber-50 text-amber-700" : "border-emerald-200 bg-emerald-50 text-emerald-700"}>
+                    {isLeave ? <FileText className="mr-1.5 size-3.5" /> : isLate || isAbsent ? <Clock3 className="mr-1.5 size-3.5" /> : <CheckCircle2 className="mr-1.5 size-3.5" />}
+                    {isLeave ? leaveApprovalLabel : isAbsent ? "ขาดเรียน" : isLate ? "มาสาย" : "มาเรียน"}
+                  </Badge>
+                )}
+              </div>
+              {!data?.checkedIn && <CardDescription>{now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "Asia/Bangkok" }) + " น."}</CardDescription>}
             </CardHeader>
             <CardContent className="space-y-5">
               {data && (
@@ -376,14 +390,8 @@ export default function CheckInPage() {
                   <div className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-full bg-white font-semibold text-primary shadow-sm">{data.student.firstName[0]}</span><div><p className="font-semibold">{data.student.firstName} {data.student.lastName}</p><p className="text-sm text-muted-foreground">{data.student.studentCode} · {data.student.classroom}</p></div></div>
                 </div>
               )}
-              <div className="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-800">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><CheckCircle2 className="size-4 text-emerald-600" />มาเรียน</span><strong>ไม่เกิน 08:30 น.</strong></div>
-                  <div className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><Clock3 className="size-4 text-amber-600" />มาสาย</span><strong>หลัง 08:30 น.</strong></div>
-                  <div className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><AlertCircle className="size-4 text-red-600" />ขาดเรียน</span><strong>ไม่เช็กอินก่อน 03:00 น.</strong></div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="min-w-0">
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button className={`h-14 w-full text-base ${data?.checkedIn ? isLeave ? "bg-blue-600 hover:bg-blue-600" : isAbsent ? "bg-red-600 hover:bg-red-600" : isLate ? "bg-amber-600 hover:bg-amber-600" : "bg-emerald-600 hover:bg-emerald-600" : ""}`} disabled={loading || saving || data?.checkedIn}>
@@ -401,13 +409,18 @@ export default function CheckInPage() {
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
+              <p className="mt-3 min-h-6 text-center text-sm font-semibold text-muted-foreground sm:text-base">
+                {checkInTime ? `เวลาเช็กอิน ${checkInTime} น.` : "ยังไม่ได้เช็กอิน"}
+              </p>
+              </div>
+              <div className="min-w-0">
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="outline" className="h-14 w-full border-slate-300 text-base" disabled={loading || checkOutSaving || !data?.checkedIn || isLeave || isAbsent || Boolean(checkOutTime)}>
                     {checkOutSaving
                       ? <><Loader2 className="size-5 animate-spin" />กำลังบันทึกเวลาออก...</>
                       : checkOutTime
-                        ? <><CheckCircle2 className="size-5 text-emerald-600" />ออกเวลาเรียนแล้ว {checkOutTime} น.</>
+                        ? <><CheckCircle2 className="size-5 text-emerald-600" />ลงเวลาออกแล้ว</>
                         : !data?.checkedIn
                           ? <><LogOut className="size-5" />เช็กอินก่อนออกเวลาเรียน</>
                           : isLeave || isAbsent
@@ -420,13 +433,17 @@ export default function CheckInPage() {
                   <AlertDialogFooter><AlertDialogCancel>ยกเลิก</AlertDialogCancel><AlertDialogAction onClick={() => void checkOut()}><LogOut className="size-4" />ยืนยันออกเวลาเรียน</AlertDialogAction></AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
+              <p className="mt-3 min-h-6 text-center text-sm font-semibold text-muted-foreground sm:text-base">
+                {checkOutTime ? `เวลาลงออก ${checkOutTime} น.` : "ยังไม่ได้ลงเวลาออก"}
+              </p>
+              </div>
               </div>
               <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="size-3.5" />เวลาตัดสินสถานะอ้างอิงจากเวลาเซิร์ฟเวอร์ประเทศไทย</p>
             </CardContent>
           </Card>}
 
           {requestTopic === "" && <Card className="overflow-hidden">
-            <CardHeader className="flex-row items-center justify-between border-b">
+            <CardHeader className="flex-row items-center justify-between">
               <div><CardTitle className="flex items-center gap-2"><MapPin className="size-5 text-primary" />ตำแหน่งปัจจุบัน</CardTitle><CardDescription className="mt-2">แสดงตำแหน่งจากอุปกรณ์บน Google Maps</CardDescription></div>
               <Button variant="outline" size="sm" onClick={requestLocation} disabled={locationLoading}><LocateFixed className={locationLoading ? "size-4 animate-pulse" : "size-4"} />ค้นหาตำแหน่ง</Button>
             </CardHeader>

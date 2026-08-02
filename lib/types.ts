@@ -53,6 +53,8 @@ export type AttendanceLog = {
   classroom: string;
   status: AttendanceStatus;
   checkedInAt?: string | null;
+  checkedOutAt?: string | null;
+  checkOutStatus?: "Early" | "Normal" | null;
   remark?: string | null;
   leaveType?: LeaveType | null;
   leaveApprovalStatus?: LeaveApprovalStatus | null;

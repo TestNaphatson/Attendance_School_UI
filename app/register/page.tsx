@@ -79,7 +79,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background/65 px-4 py-8 backdrop-blur-[2px] sm:px-6">
+    <main className="min-h-screen bg-background px-4 py-8 sm:px-6">
       <div className="w-full">
         <Link href="/login" className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-4" />กลับไปหน้าเข้าสู่ระบบ

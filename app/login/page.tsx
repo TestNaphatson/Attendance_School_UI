@@ -53,12 +53,12 @@ export default function LoginPage() {
 
   return (
     <main onPointerMove={(event) => { event.currentTarget.style.setProperty("--pointer-x", `${event.clientX}px`); event.currentTarget.style.setProperty("--pointer-y", `${event.clientY}px`); }} className="grid min-h-screen overflow-hidden bg-transparent lg:grid-cols-[1.08fr_.92fr]">
-      <section className="relative hidden overflow-hidden bg-gradient-to-br from-[#172a72] via-[#294bb7] to-[#5f7df1] p-12 text-white lg:flex lg:flex-col lg:justify-between">
+      <section className="relative hidden overflow-hidden bg-[#1d3a63] p-12 text-white lg:flex lg:flex-col lg:justify-between">
         <div className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-300" style={{ background: "radial-gradient(520px circle at var(--pointer-x, 35%) var(--pointer-y, 40%), rgba(255,255,255,.20), transparent 45%)" }} />
         <div className="absolute -right-24 -top-24 size-80 rounded-full border-[48px] border-white/5 transition-transform duration-700 hover:rotate-12" />
         <div className="absolute -bottom-28 left-10 size-96 rounded-full bg-[#5f7df1]/30 blur-3xl" />
         <div className="relative flex items-center gap-3 text-lg font-semibold">
-          <span className="grid size-12 place-items-center rounded-2xl bg-white/15 shadow-xl ring-1 ring-white/25 backdrop-blur transition-transform duration-300 hover:-rotate-6 hover:scale-110">
+          <span className="grid size-12 place-items-center rounded-2xl bg-[#f5c84c] text-[#14233b] shadow-[0_6px_18px_rgba(0,0,0,.2)]">
             <GraduationCap className="size-6" />
           </span>
           School Attendance
@@ -68,18 +68,18 @@ export default function LoginPage() {
           <h1 className="text-5xl font-semibold leading-tight tracking-tight">ทุกวันเรียนรู้<br />เริ่มจากการมาเรียน</h1>
           <p className="mt-6 max-w-md text-lg leading-8 text-blue-100/85">จัดการข้อมูลการเข้าเรียนของนักเรียนอย่างเป็นระบบ รวดเร็ว และตรวจสอบได้ในที่เดียว</p>
           <div className="mt-8 grid max-w-lg gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><CheckCircle2 className="size-5 text-emerald-300" /><p className="mt-3 text-sm font-semibold">เช็กอินง่าย</p><p className="mt-1 text-xs text-blue-100/70">บันทึกได้ทันที</p></div>
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><Clock3 className="size-5 text-amber-300" /><p className="mt-3 text-sm font-semibold">ข้อมูลทันเวลา</p><p className="mt-1 text-xs text-blue-100/70">อัปเดตอัตโนมัติ</p></div>
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/15"><ShieldCheck className="size-5 text-sky-300" /><p className="mt-3 text-sm font-semibold">ปลอดภัย</p><p className="mt-1 text-xs text-blue-100/70">แยกสิทธิ์ผู้ใช้</p></div>
+            <div className="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10"><CheckCircle2 className="size-5 text-emerald-300" /><p className="mt-3 text-sm font-semibold">เช็กอินง่าย</p><p className="mt-1 text-xs text-slate-300">บันทึกได้ทันที</p></div>
+            <div className="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10"><Clock3 className="size-5 text-[#f5c84c]" /><p className="mt-3 text-sm font-semibold">ข้อมูลทันเวลา</p><p className="mt-1 text-xs text-slate-300">อัปเดตอัตโนมัติ</p></div>
+            <div className="rounded-2xl bg-white/[.07] p-4 ring-1 ring-white/10"><ShieldCheck className="size-5 text-sky-300" /><p className="mt-3 text-sm font-semibold">ปลอดภัย</p><p className="mt-1 text-xs text-slate-300">แยกสิทธิ์ผู้ใช้</p></div>
           </div>
         </div>
         <p className="relative text-sm text-blue-200/70">ระบบบริหารจัดการสำหรับบุคลากรโรงเรียน</p>
       </section>
 
-      <section className="relative flex min-h-screen items-center justify-center bg-background/70 p-5 backdrop-blur-[2px] sm:p-10">
+      <section className="relative flex min-h-screen items-center justify-center bg-background p-5 sm:p-10">
         <div className="pointer-events-none absolute right-[-8rem] top-[-8rem] size-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute bottom-[-10rem] left-[-7rem] size-72 rounded-full bg-blue-200/30 blur-3xl" />
-        <Card className="relative w-full max-w-md border-white/90 bg-white/90 p-2 shadow-[0_28px_90px_rgba(30,46,84,.16)] backdrop-blur-xl transition-transform duration-500 hover:-translate-y-1 sm:p-4">
+        <Card className="relative w-full max-w-md bg-white p-2 shadow-[0_18px_56px_rgba(24,39,63,.12)] sm:p-4">
           <CardHeader className="pb-7">
             <div className="mb-7 grid size-12 place-items-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 lg:hidden">
               <GraduationCap className="size-7" />
@@ -116,7 +116,7 @@ export default function LoginPage() {
                   </button>
                 </div>
               </div>
-              <Button type="submit" className="h-12 w-full bg-gradient-to-r from-primary to-[#5577e5] text-base shadow-[0_10px_28px_rgba(49,87,213,.28)] hover:from-[#294bc2] hover:to-[#4668d5]" disabled={loading}>
+              <Button type="submit" className="h-12 w-full text-base" disabled={loading}>
                 {loading && <Loader2 className="size-4 animate-spin" />}
                 {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
               </Button>

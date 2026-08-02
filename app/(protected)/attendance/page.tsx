@@ -90,7 +90,7 @@ export default function AttendancePage() {
 
       <div className="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
         <Card className="overflow-hidden">
-          <CardHeader className="border-b">
+          <CardHeader>
             <CardTitle className="flex items-center gap-2"><UserCheck className="size-5 text-primary" />เลือกนักเรียน</CardTitle>
             <CardDescription>วันที่ {thaiDate(date)} · บันทึกแล้ว {students.filter((s) => s.status !== "NotRecorded").length}/{students.length} คน</CardDescription>
             <div className="relative pt-3"><Search className="absolute left-3 top-6 size-4 text-muted-foreground" /><Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="ค้นหารหัส ชื่อ หรือห้องเรียน..." className="pl-9" /></div>
@@ -114,7 +114,7 @@ export default function AttendancePage() {
 
         <form onSubmit={submit}>
           <Card>
-            <CardHeader className="border-b">
+            <CardHeader>
               <CardTitle className="flex items-center gap-2"><ClipboardCheck className="size-5 text-primary" />รายละเอียดการเข้าเรียน</CardTitle>
               <CardDescription>{selected ? `${selected.studentCode} · ${selected.firstName} ${selected.lastName} · ${selected.classroom}` : "กรุณาเลือกนักเรียนจากรายชื่อด้านซ้าย"}</CardDescription>
             </CardHeader>

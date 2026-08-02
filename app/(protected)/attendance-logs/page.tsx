@@ -107,7 +107,7 @@ export default function AttendanceLogsPage() {
       {error && <Alert className="border-red-200 bg-red-50 text-red-700"><AlertCircle className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>โหลดข้อมูลไม่สำเร็จ</AlertTitle><AlertDescription>{error}</AlertDescription></div></Alert>}
 
       <Card className="report-controls">
-        <CardHeader className="border-b">
+        <CardHeader>
           <CardTitle className="flex items-center gap-2"><CalendarRange className="size-5 text-primary" />เลือกช่วงวันที่</CardTitle>
           <CardDescription>ค้นหา Log และดาวน์โหลดเป็นไฟล์ CSV ภาษาไทย</CardDescription>
         </CardHeader>
@@ -121,7 +121,7 @@ export default function AttendanceLogsPage() {
       </Card>
 
       <Card className="overflow-hidden">
-        <CardHeader className="border-b">
+        <CardHeader>
           <CardTitle className="flex items-center gap-2"><FileSpreadsheet className="size-5 text-emerald-600" />รายการทั้งหมด</CardTitle>
           <CardDescription>{logs.length.toLocaleString("th-TH")} รายการ</CardDescription>
         </CardHeader>

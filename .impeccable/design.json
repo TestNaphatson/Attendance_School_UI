@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-02T00:00:00+07:00",
+  "title": "Design System: School Attendance",
+  "extensions": {
+    "colorMeta": {
+      "cool-light": { "role": "neutral", "displayName": "Cool Light", "canonical": "#f2f5f8", "tonalRamp": ["#20272e", "#39444e", "#56636f", "#75828e", "#96a2ad", "#b8c2ca", "#d9e0e6", "#f2f5f8"] },
+      "paper-white": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "tonalRamp": ["#262626", "#454545", "#666666", "#888888", "#aaaaaa", "#cccccc", "#eeeeee", "#ffffff"] },
+      "ink-navy": { "role": "neutral", "displayName": "Ink Navy", "canonical": "#16243a", "tonalRamp": ["#101a2b", "#16243a", "#243d61", "#355985", "#5277a4", "#7998be", "#adbed4", "#e6ebf2"] },
+      "navigation-navy": { "role": "primary", "displayName": "Navigation Navy", "canonical": "#14233b", "tonalRamp": ["#0d1727", "#14233b", "#223b62", "#345583", "#5173a2", "#7794bb", "#abbcd1", "#e5eaf1"] },
+      "action-cobalt": { "role": "primary", "displayName": "Action Cobalt", "canonical": "#2156d7", "tonalRamp": ["#0d2256", "#13347f", "#1945ab", "#2156d7", "#527be2", "#83a0eb", "#b6c7f3", "#e8eefc"] },
+      "action-cobalt-soft": { "role": "secondary", "displayName": "Cobalt Wash", "canonical": "#e8eefc", "tonalRamp": ["#14213a", "#233860", "#365183", "#536da1", "#788cba", "#a2add0", "#c8d1e7", "#e8eefc"] },
+      "action-cobalt-ink": { "role": "primary", "displayName": "Cobalt Ink", "canonical": "#183d94", "tonalRamp": ["#0d204d", "#122f72", "#183d94", "#2c56b6", "#5679ca", "#849fde", "#b7c8ed", "#e9effb"] },
+      "quiet-surface": { "role": "neutral", "displayName": "Quiet Surface", "canonical": "#edf1f5", "tonalRamp": ["#22272c", "#3d454d", "#59636d", "#77828d", "#98a3ad", "#bac3cb", "#dbe1e7", "#edf1f5"] },
+      "quiet-ink": { "role": "neutral", "displayName": "Quiet Ink", "canonical": "#5b6879", "tonalRamp": ["#1d2228", "#343d47", "#4b5663", "#657181", "#828e9d", "#a4adb8", "#c9cfd6", "#edf0f3"] },
+      "rule": { "role": "neutral", "displayName": "Rule", "canonical": "#d9e0e8", "tonalRamp": ["#20262c", "#39434c", "#53616d", "#71808d", "#929fab", "#b4bec7", "#d9e0e8", "#f2f5f8"] },
+      "field-rule": { "role": "neutral", "displayName": "Field Rule", "canonical": "#cbd5e1", "tonalRamp": ["#1e252d", "#37434e", "#50606e", "#6d7e8e", "#8d9dac", "#adbbc7", "#cbd5e1", "#eef2f6"] },
+      "school-yellow": { "role": "secondary", "displayName": "School Yellow", "canonical": "#f5c84c", "tonalRamp": ["#3f3107", "#67500b", "#90710f", "#b99520", "#d9ae31", "#f5c84c", "#fae09a", "#fff6dc"] },
+      "danger": { "role": "tertiary", "displayName": "Danger Red", "canonical": "#c93445", "tonalRamp": ["#4a111a", "#741a27", "#9e2535", "#c93445", "#dc6673", "#e99aa3", "#f4cbd0", "#fceff1"] }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Compact page and principal task titles." },
+      "title": { "displayName": "Title", "purpose": "Card, region, and table headings." },
+      "body": { "displayName": "Body", "purpose": "Thai-first operational copy and values." },
+      "label": { "displayName": "Label", "purpose": "Control labels, metadata, and navigation descriptors." }
+    },
+    "shadows": [
+      { "name": "navigation-edge", "value": "12px 0 36px rgba(20,35,59,.1)", "purpose": "Separates the persistent navy rail from working content." },
+      { "name": "active-navigation", "value": "0 6px 18px rgba(0,0,0,.16)", "purpose": "Lifts the white active destination on navy." },
+      { "name": "task-emphasis", "value": "0 10px 40px rgba(25,38,70,.1)", "purpose": "Marks the principal student check-in card." }
+    ],
+    "motion": [
+      { "name": "page-enter", "value": "280ms cubic-bezier(.22,1,.36,1)", "purpose": "A short opacity and 5px rise for main content." },
+      { "name": "nav-drawer", "value": "300ms ease-out", "purpose": "Mobile navigation translation." },
+      { "name": "state-color", "value": "150ms", "purpose": "Navigation hover and selection feedback." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The clearest next operational action.",
+      "html": "<button class=\"ds-btn-primary\">บันทึกการเข้าเรียน</button>",
+      "css": ".ds-btn-primary{display:inline-flex;min-height:40px;align-items:center;justify-content:center;gap:8px;border:0;border-radius:8px;background:var(--primary,#2156d7);color:var(--primary-foreground,#fff);padding:10px 16px;font:600 14px/1.4 Prompt,sans-serif;transition:background-color .15s,transform .15s}.ds-btn-primary:hover{background:#183d94}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:3px solid color-mix(in srgb,var(--ring,#2156d7) 32%,transparent);outline-offset:2px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "A secondary action that does not compete with cobalt.",
+      "html": "<button class=\"ds-btn-outline\">ยกเลิก</button>",
+      "css": ".ds-btn-outline{display:inline-flex;min-height:40px;align-items:center;justify-content:center;border:1px solid var(--input,#cbd5e1);border-radius:8px;background:var(--card,#fff);color:var(--foreground,#16243a);padding:10px 16px;font:600 14px/1.4 Prompt,sans-serif;transition:background-color .15s,border-color .15s}.ds-btn-outline:hover{background:var(--muted,#edf1f5);border-color:#aeb9c7}.ds-btn-outline:focus-visible{outline:3px solid color-mix(in srgb,var(--ring,#2156d7) 32%,transparent);outline-offset:2px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A compact Thai-first operational field.",
+      "html": "<label class=\"ds-field-label\">รหัสนักเรียน<input class=\"ds-field\" placeholder=\"กรอกรหัสนักเรียน\"></label>",
+      "css": ".ds-field-label{display:grid;gap:8px;color:var(--foreground,#16243a);font:600 12px/1.4 Prompt,sans-serif}.ds-field{min-height:40px;border:1px solid var(--input,#cbd5e1);border-radius:8px;background:var(--card,#fff);color:var(--foreground,#16243a);padding:10px 12px;font:400 14px/1.5 Prompt,sans-serif}.ds-field::placeholder{color:var(--muted-foreground,#5b6879)}.ds-field:hover{border-color:#aeb9c7}.ds-field:focus-visible{outline:3px solid color-mix(in srgb,var(--ring,#2156d7) 32%,transparent);outline-offset:2px}"
+    },
+    {
+      "name": "Working Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A paper-white container for a coherent task or dataset.",
+      "html": "<section class=\"ds-card\"><h3>สถานะวันนี้</h3><p>ตรวจสอบการลงเวลาและคำขอที่เกี่ยวข้อง</p></section>",
+      "css": ".ds-card{border:1px solid var(--border,#d9e0e8);border-radius:12px;background:var(--card,#fff);color:var(--card-foreground,#16243a);padding:24px;font-family:Prompt,sans-serif}.ds-card h3{margin:0;font-size:16px;line-height:1.5;font-weight:600}.ds-card p{margin:8px 0 0;color:var(--muted-foreground,#5b6879);font-size:14px;line-height:1.5}.ds-card:hover{border-color:#cbd5e1}.ds-card:focus-within{outline:3px solid color-mix(in srgb,var(--ring,#2156d7) 20%,transparent);outline-offset:2px}"
+    },
+    {
+      "name": "Present Status",
+      "kind": "chip",
+      "description": "A word-led positive attendance state.",
+      "html": "<span class=\"ds-status-present\">✓ มาเรียน</span>",
+      "css": ".ds-status-present{display:inline-flex;align-items:center;gap:6px;border:1px solid #a7f3d0;border-radius:999px;background:#ecfdf5;color:#047857;padding:4px 10px;font:600 12px/1.4 Prompt,sans-serif}.ds-status-present:hover{background:#d1fae5}.ds-status-present:focus-visible{outline:3px solid color-mix(in srgb,#059669 28%,transparent);outline-offset:2px}"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "description": "A descriptive destination in the deep navy rail.",
+      "html": "<a class=\"ds-nav-item\" href=\"#\"><span class=\"ds-nav-icon\">✓</span><span><strong>บันทึกการเข้าเรียน</strong><small>ลงสถานะรายบุคคล</small></span></a>",
+      "css": ".ds-nav-item{display:flex;min-height:56px;align-items:center;gap:12px;border-radius:12px;background:transparent;color:#e2e8f0;padding:10px 12px;text-decoration:none;font-family:Prompt,sans-serif;transition:background-color .15s,color .15s}.ds-nav-icon{display:grid;width:40px;height:40px;place-items:center;border-radius:12px;background:rgba(255,255,255,.07)}.ds-nav-item strong{display:block;font-size:14px}.ds-nav-item small{display:block;margin-top:2px;color:rgba(191,219,254,.7);font-size:11px}.ds-nav-item:hover{background:rgba(255,255,255,.1);color:#fff}.ds-nav-item:focus-visible{outline:3px solid color-mix(in srgb,#fff 35%,transparent);outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The School Operations Bulletin Board",
+    "overview": "This is an operational school environment, not a generic gradient SaaS dashboard. Cool light surfaces behave like orderly posted sheets; deep navy navigation provides a permanent institutional frame; cobalt identifies the next useful action; and one school-yellow landmark makes the product recognizable without turning every screen into branding. The system is deliberately dense but calm. Administrators and teachers must scan many records and pending states, while students must find a short, frequent action and understand its result immediately.",
+    "keyCharacteristics": ["Cool, light working canvas with white paper-like containers.", "Deep navy persistent navigation and cobalt action hierarchy.", "School yellow reserved for the product landmark and rare attention cues.", "Compact Thai-first typography and dense, readable operational layouts.", "Status meaning expressed with words and icons as well as color.", "Mostly flat surfaces; restrained shadows clarify hierarchy, not decoration."],
+    "rules": [
+      { "name": "The No-Gradient Rule", "body": "Keep core surfaces and actions flat; hierarchy comes from contrast, spacing, borders, and restrained depth.", "section": "colors" },
+      { "name": "The Yellow Landmark Rule", "body": "School yellow is a recognizable landmark, not a second primary action color.", "section": "colors" },
+      { "name": "The Status Is Language Rule", "body": "Never communicate attendance or approval state through hue alone; pair color with a label and, where space permits, an icon.", "section": "colors" },
+      { "name": "The Thai-First Measure Rule", "body": "Allow Thai labels enough width and line height to remain legible; do not force English-dashboard abbreviations to preserve a rigid row.", "section": "typography" },
+      { "name": "The First-Viewport Rule", "body": "Preserve access to navigation, the current task title, and the task's meaningful content or action without ceremonial hero space.", "section": "layout" },
+      { "name": "The Flat-by-Default Rule", "body": "Ordinary cards and fields rely on surface contrast and rules; reserve visible elevation for navigation, priority, and transient state.", "section": "elevation" }
+    ],
+    "dos": ["Do keep frequent actions and pending states visible in the first working viewport.", "Do use cobalt for the clearest next action and deep navy for persistent institutional navigation.", "Do pair status color with direct Thai wording and a recognizable icon where practical.", "Do use the 8/12/16px corner hierarchy and the 4/8/12/16/24px spacing rhythm.", "Do preserve keyboard focus, reduced-motion behavior, readable contrast, and mobile touch targets."],
+    "donts": ["Don't introduce generic gradients, glass panels, decorative blobs, or marketing-style hero composition.", "Don't use school yellow as a routine primary button or flood whole screens with it.", "Don't make every card float; elevation must communicate navigation, priority, or temporary state.", "Don't rely on red, amber, green, blue, or violet without a textual state label.", "Don't copy the legacy one-off uppercase eyebrow, ad hoc status pills, or rounded-3xl/backdrop modal treatment into new components; maintain them only where compatibility requires it."]
+  }
+}

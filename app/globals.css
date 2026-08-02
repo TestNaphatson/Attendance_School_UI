@@ -2,20 +2,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f7fb;
-  --foreground: #18233a;
+  --background: #f6f8fb;
+  --foreground: #16243a;
   --card: #ffffff;
-  --card-foreground: #18233a;
-  --primary: #3157d5;
+  --card-foreground: #16243a;
+  --primary: #3b6bd8;
   --primary-foreground: #ffffff;
-  --secondary: #eef2ff;
-  --secondary-foreground: #29449d;
-  --muted: #f1f4f9;
-  --muted-foreground: #657189;
-  --border: #e1e7f0;
-  --input: #d7dfeb;
-  --ring: #7890e9;
-  --destructive: #dc3f4f;
+  --secondary: #eef3ff;
+  --secondary-foreground: #183d94;
+  --muted: #f1f4f7;
+  --muted-foreground: #5b6879;
+  --border: #e1e6ed;
+  --input: #cbd5e1;
+  --ring: #2156d7;
+  --destructive: #c93445;
 }
 
 @theme inline {
@@ -37,105 +37,47 @@
 }
 
 * { border-color: var(--border); }
+[data-slot="card-header"] { border-bottom: 0 !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(120, 144, 233, .10), transparent 28rem),
-    radial-gradient(circle at 0% 100%, rgba(49, 87, 213, .06), transparent 24rem),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: "Prompt", "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
   text-rendering: optimizeLegibility;
-  isolation: isolate;
 }
 button, input, select, textarea { font: inherit; }
 button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 button:not(:disabled), a { cursor: pointer; }
-::selection { background: rgba(49, 87, 213, .18); }
-:focus-visible { outline: none; }
+::selection { background: #bfd0ff; color: #102c72; }
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--ring) 32%, transparent); outline-offset: 2px; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #c9d2e2; border: 3px solid transparent; border-radius: 999px; background-clip: padding-box; }
-::-webkit-scrollbar-thumb:hover { background-color: #aebbd0; }
+::-webkit-scrollbar-thumb { background: #aeb9c7; border: 3px solid transparent; border-radius: 999px; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: #8997a9; }
 
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  z-index: -2;
-  pointer-events: none;
-  will-change: transform, border-radius;
-}
-body::before {
-  inset: -35%;
-  background: conic-gradient(from 180deg at 50% 50%, rgba(49,87,213,.16), rgba(112,82,233,.12), rgba(62,181,221,.15), rgba(49,87,213,.16));
-  filter: blur(70px);
-  animation: water-flow 18s ease-in-out infinite alternate;
-}
-body::after {
-  left: -15%;
-  right: -15%;
-  bottom: -34rem;
-  height: 54rem;
-  z-index: -1;
-  border-radius: 42% 58% 0 0 / 20% 24% 0 0;
-  background: linear-gradient(110deg, rgba(93,126,238,.10), rgba(52,195,218,.13), rgba(127,92,225,.10));
-  filter: blur(2px);
-  animation: water-wave 12s ease-in-out infinite alternate;
-}
-@keyframes water-flow {
-  0% { transform: translate3d(-4%, -3%, 0) rotate(-4deg) scale(1); border-radius: 46% 54% 58% 42%; }
-  50% { transform: translate3d(5%, 2%, 0) rotate(5deg) scale(1.06); border-radius: 57% 43% 38% 62%; }
-  100% { transform: translate3d(-1%, 6%, 0) rotate(-2deg) scale(1.02); border-radius: 41% 59% 62% 38%; }
-}
-@keyframes water-wave {
-  0% { transform: translate3d(-3%, 0, 0) rotate(-1deg); border-radius: 42% 58% 0 0 / 20% 24% 0 0; }
-  100% { transform: translate3d(3%, -3rem, 0) rotate(1deg); border-radius: 58% 42% 0 0 / 28% 18% 0 0; }
-}
-@keyframes page-enter {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes soft-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-main { animation: page-enter .42s cubic-bezier(.22, 1, .36, 1) both; }
-.soft-float { animation: soft-float 4s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}
-@keyframes delete-modal-enter {
-  from { opacity: 0; transform: translateY(12px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes student-stack-float {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-4px); }
-}
-@keyframes student-stack-drop {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-  70% { opacity: 1; transform: translateX(-50%) translateY(58px) scale(.72) rotate(4deg); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(82px) scale(.25) rotate(8deg); }
-}
-@keyframes trash-catch {
-  0%, 100% { transform: translateX(-50%) rotate(0); }
-  45% { transform: translateX(-50%) rotate(-8deg) scale(1.12); }
-  70% { transform: translateX(-50%) rotate(6deg) scale(1.08); }
-}
+main { animation: page-enter .28s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes page-enter { from { opacity: .7; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes delete-modal-enter { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes student-stack-float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
+@keyframes student-stack-drop { 0% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } 70% { opacity: 1; transform: translateX(-50%) translateY(58px) scale(.72) rotate(4deg); } 100% { opacity: 0; transform: translateX(-50%) translateY(82px) scale(.25) rotate(8deg); } }
+@keyframes trash-catch { 0%, 100% { transform: translateX(-50%) rotate(0); } 45% { transform: translateX(-50%) rotate(-8deg) scale(1.12); } 70% { transform: translateX(-50%) rotate(6deg) scale(1.08); } }
+@keyframes delete-success-pop { from { opacity: 0; transform: scale(.78); } to { opacity: 1; transform: scale(1); } }
 .delete-modal-enter { animation: delete-modal-enter .22s cubic-bezier(.22, 1, .36, 1) both; }
 .student-stack-float { animation: student-stack-float 2.2s ease-in-out infinite; }
 .student-stack-drop { animation: student-stack-drop .7s cubic-bezier(.5, 0, .8, .3) both; }
 .trash-catch { animation: trash-catch .7s ease-in-out both; }
-@keyframes delete-success-pop { from { opacity: 0; transform: scale(.78); } to { opacity: 1; transform: scale(1); } }
 .delete-success-pop { animation: delete-success-pop .32s cubic-bezier(.22, 1, .36, 1) both; }
+
+@media (max-width: 639px) { h1 { text-wrap: balance; } main { animation-duration: .18s; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 
 @media print {
   @page { size: A4 landscape; margin: 12mm; }
   body { background: #fff !important; }
-  body::before, body::after { display: none !important; }
   body:has(.report-print-page) aside,
   body:has(.report-print-page) > div > div > header,
   .report-controls { display: none !important; }

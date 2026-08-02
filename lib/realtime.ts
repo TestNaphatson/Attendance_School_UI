@@ -9,15 +9,19 @@ export function subscribeToTimeEntryChanges(onChange: () => void) {
   const connection = new signalR.HubConnectionBuilder()
     .withUrl(hubUrl, { accessTokenFactory: () => token, withCredentials: false })
     .withAutomaticReconnect()
-    .configureLogging(signalR.LogLevel.Warning)
+    // Expected React development cleanup can stop start() during negotiation.
+    // Handle failures below so that cancellation is not reported as a console error.
+    .configureLogging(signalR.LogLevel.None)
     .build();
 
+  let disposed = false;
   connection.on("TimeEntryRequestChanged", onChange);
   void connection.start().catch((error) => {
-    console.warn("Realtime connection unavailable", error);
+    if (!disposed) console.warn("Realtime connection unavailable", error);
   });
 
   return () => {
+    disposed = true;
     connection.off("TimeEntryRequestChanged", onChange);
     void connection.stop();
   };

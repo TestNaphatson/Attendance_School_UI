@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, CalendarDays, CheckCircle2, Clock3, FileCheck2, Loader2, RefreshCw, School, UserMinus, UsersRound } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowRight, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, Clock3, FileCheck2, History, Loader2, RefreshCw, School, UserMinus, UsersRound } from "lucide-react";
 import { api } from "@/lib/api";
-import { DashboardSummary, LeaveApprovalStatus } from "@/lib/types";
+import { AttendanceLog, AttendanceLogResponse, DashboardSummary, LeaveApprovalStatus } from "@/lib/types";
 import { attendanceToday, thaiDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
+import { StatusBadge } from "@/components/status-badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const empty: DashboardSummary = { date: attendanceToday(), totalStudents: 0, present: 0, late: 0, leave: 0, absent: 0, recorded: 0, notRecorded: 0, leaveStudents: [] };
 
@@ -20,11 +22,76 @@ const approvalMeta = {
   Rejected: { label: "ไม่อนุมัติ", className: "border-red-200 bg-red-50 text-red-700" },
 } satisfies Record<LeaveApprovalStatus, { label: string; className: string }>;
 
+function displayTime(value?: string | null) {
+  if (!value) return "—";
+  return new Intl.DateTimeFormat("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Bangkok",
+  }).format(new Date(value));
+}
+
+const thaiMonths = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+
+function MonthPicker({ label, value, min, max, onChange }: { label: string; value: string; min?: string; max?: string; onChange: (value: string) => void }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const [viewYear, setViewYear] = useState(Number(value.slice(0, 4)));
+  const selectedMonth = Number(value.slice(5, 7));
+  const displayLabel = new Intl.DateTimeFormat("th-TH", { month: "long", year: "numeric", timeZone: "Asia/Bangkok" }).format(new Date(`${value}-01T00:00:00+07:00`));
+
+  useEffect(() => { setViewYear(Number(value.slice(0, 4))); }, [value]);
+  useEffect(() => {
+    function closeOnOutside(event: PointerEvent) {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    }
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("pointerdown", closeOnOutside);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  return <div ref={rootRef} className="relative w-[190px]">
+    <span className="mb-1.5 block text-xs font-semibold text-muted-foreground">{label}</span>
+    <Button type="button" variant="outline" aria-haspopup="dialog" aria-expanded={open} onClick={() => setOpen((current) => !current)} className="h-11 w-[190px] justify-between px-3.5 font-medium">
+      <span className="flex items-center gap-2"><CalendarDays className="size-4 text-primary" />{displayLabel}</span>
+      <ChevronRight className={`size-4 text-muted-foreground transition-transform ${open ? "rotate-90" : ""}`} />
+    </Button>
+    {open && <div role="dialog" aria-label={`เลือก${label}`} className="absolute right-0 top-full z-40 mt-2 w-[300px] rounded-2xl bg-white p-4 shadow-[0_16px_48px_rgba(24,39,63,.18)]">
+      <div className="mb-3 flex items-center justify-between">
+        <Button type="button" variant="ghost" size="icon" aria-label="ปีก่อนหน้า" onClick={() => setViewYear((year) => year - 1)}><ChevronLeft className="size-4" /></Button>
+        <strong className="text-base">พ.ศ. {viewYear + 543}</strong>
+        <Button type="button" variant="ghost" size="icon" aria-label="ปีถัดไป" onClick={() => setViewYear((year) => year + 1)}><ChevronRight className="size-4" /></Button>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {thaiMonths.map((month, index) => {
+          const candidate = `${viewYear}-${String(index + 1).padStart(2, "0")}`;
+          const disabled = Boolean((min && candidate < min) || (max && candidate > max));
+          const selected = viewYear === Number(value.slice(0, 4)) && selectedMonth === index + 1;
+          return <button key={month} type="button" disabled={disabled} aria-pressed={selected} onClick={() => { onChange(candidate); setOpen(false); }} className={`h-10 rounded-xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/20 disabled:cursor-not-allowed disabled:opacity-35 ${selected ? "bg-primary text-white" : "bg-muted/65 text-foreground hover:bg-secondary hover:text-secondary-foreground"}`}>{month}</button>;
+        })}
+      </div>
+    </div>}
+  </div>;
+}
+
 export default function DashboardPage() {
-  const [date, setDate] = useState(attendanceToday());
+  const date = attendanceToday();
   const [data, setData] = useState(empty);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [logDate, setLogDate] = useState("");
+  const [logPage, setLogPage] = useState(1);
+  const [graphFromMonth, setGraphFromMonth] = useState(() => attendanceToday().slice(0, 7));
+  const [graphToMonth, setGraphToMonth] = useState(() => attendanceToday().slice(0, 7));
+  const [logs, setLogs] = useState<AttendanceLog[]>([]);
+  const [logsLoading, setLogsLoading] = useState(true);
+  const [logsError, setLogsError] = useState("");
 
   async function load() {
     setLoading(true);
@@ -38,11 +105,27 @@ export default function DashboardPage() {
     }
   }
 
+  async function loadLogs() {
+    setLogsLoading(true);
+    setLogsError("");
+    try {
+      const result = await api<AttendanceLogResponse>("/Attendances/history");
+      setLogs(result.items);
+    } catch (err) {
+      setLogsError(err instanceof Error ? err.message : "ไม่สามารถโหลดข้อมูลการเข้าออกได้");
+    } finally {
+      setLogsLoading(false);
+    }
+  }
+
   useEffect(() => {
     void load();
     const timer = window.setInterval(() => void load(), 15_000);
     return () => window.clearInterval(timer);
   }, [date]);
+
+  useEffect(() => { void loadLogs(); }, []);
+  useEffect(() => { setLogPage(1); }, [logDate]);
 
   const cards = [
     { label: "นักเรียนทั้งหมด", value: data.totalStudents, icon: UsersRound, tone: "bg-indigo-50 text-indigo-600", note: "นักเรียนที่กำลังศึกษา" },
@@ -58,13 +141,38 @@ export default function DashboardPage() {
   );
   const visibleLeaveStudents = sortedLeaveStudents.slice(0, 5);
   const pendingLeaveCount = data.leaveStudents.filter((student) => (student.leaveApprovalStatus ?? "Pending") === "Pending").length;
+  const graphLogs = useMemo(
+    () => logs.filter((item) => {
+      const month = item.attendanceDate.slice(0, 7);
+      return month >= graphFromMonth && month <= graphToMonth;
+    }),
+    [graphFromMonth, graphToMonth, logs],
+  );
+  const graphSummary = useMemo(() => graphLogs.reduce(
+    (summary, item) => {
+      if (item.status === "Present") summary.present += 1;
+      if (item.status === "Late") summary.late += 1;
+      if (item.status === "Leave") summary.leave += 1;
+      if (item.status === "Absent") summary.absent += 1;
+      return summary;
+    },
+    { present: 0, late: 0, leave: 0, absent: 0 },
+  ), [graphLogs]);
+  const graphTotal = graphSummary.present + graphSummary.late + graphSummary.leave + graphSummary.absent;
+  const filteredLogs = useMemo(() => logDate ? logs.filter((item) => item.attendanceDate === logDate) : logs, [logDate, logs]);
+  const logPageSize = 10;
+  const logTotalPages = Math.max(1, Math.ceil(filteredLogs.length / logPageSize));
+  const visibleLogs = filteredLogs.slice((logPage - 1) * logPageSize, logPage * logPageSize);
+  const monthFormatter = new Intl.DateTimeFormat("th-TH", { month: "long", year: "numeric", timeZone: "Asia/Bangkok" });
+  const graphFromMonthLabel = monthFormatter.format(new Date(`${graphFromMonth}-01T00:00:00+07:00`));
+  const graphToMonthLabel = monthFormatter.format(new Date(`${graphToMonth}-01T00:00:00+07:00`));
+  const graphMonthLabel = graphFromMonth === graphToMonth ? graphFromMonthLabel : `${graphFromMonthLabel} – ${graphToMonthLabel}`;
 
   return (
     <div className="w-full space-y-5 sm:space-y-7">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div><p className="mb-1 text-sm font-medium text-primary">ภาพรวมประจำวัน</p><h1 className="text-2xl font-bold tracking-tight sm:text-3xl">สวัสดี, ผู้ดูแลระบบ 👋</h1><p className="mt-2 text-sm text-muted-foreground">ติดตามสถานะการเข้าเรียนของนักเรียนได้จากที่นี่</p></div>
         <div className="flex w-full items-center gap-2 md:w-auto">
-          <div className="relative min-w-0 flex-1 md:flex-none"><CalendarDays className="absolute left-3 top-3 size-4 text-muted-foreground" /><Input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full pl-10 md:w-[190px]" /></div>
           <Button variant="outline" size="icon" onClick={load} disabled={loading} aria-label="โหลดข้อมูลใหม่"><RefreshCw className={loading ? "size-4 animate-spin" : "size-4"} /></Button>
         </div>
       </div>
@@ -86,23 +194,28 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 sm:gap-5 lg:grid-cols-[1.4fr_.6fr]">
         <Card>
-          <CardHeader className="sm:flex-row sm:items-center sm:justify-between">
-            <div><CardTitle>สรุปการเข้าเรียน</CardTitle><CardDescription className="mt-1">{thaiDate(date)}</CardDescription></div>
-            <Badge className="w-fit border-primary/15 bg-primary/10 text-primary">บันทึกแล้ว {data.recorded}/{data.totalStudents}</Badge>
+          <CardHeader className="gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div><CardTitle>กราฟการเข้าเรียนรายเดือน</CardTitle><CardDescription className="mt-1">{graphMonthLabel}</CardDescription></div>
+            <div className="flex w-full flex-wrap gap-2 sm:w-auto sm:justify-end">
+              <MonthPicker label="ตั้งแต่เดือน" value={graphFromMonth} max={graphToMonth} onChange={setGraphFromMonth} />
+              <span className="hidden self-end pb-3 text-sm text-muted-foreground sm:inline">ถึง</span>
+              <MonthPicker label="ถึงเดือน" value={graphToMonth} min={graphFromMonth} max={attendanceToday().slice(0, 7)} onChange={setGraphToMonth} />
+              <Badge className="hidden w-fit border-primary/15 bg-primary/10 text-primary sm:inline-flex">{graphTotal.toLocaleString("th-TH")} รายการ</Badge>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid h-64 grid-cols-4 gap-2 sm:gap-5" role="img" aria-label={`กราฟสรุปการเข้าเรียน มา ${data.present} คน สาย ${data.late} คน ลา ${data.leave} คน ขาด ${data.absent} คน`}>
+            <div className="grid h-64 grid-cols-4 gap-2 sm:gap-5" role="img" aria-label={`กราฟสรุปการเข้าเรียน มา ${graphSummary.present} รายการ สาย ${graphSummary.late} รายการ ลา ${graphSummary.leave} รายการ ขาด ${graphSummary.absent} รายการ`}>
               {[
-                { label: "มาเรียน", value: data.present, color: "bg-emerald-500" },
-                { label: "มาสาย", value: data.late, color: "bg-amber-400" },
-                { label: "ลา", value: data.leave, color: "bg-blue-500" },
-                { label: "ขาด", value: data.absent, color: "bg-red-500" },
+                { label: "มาเรียน", value: graphSummary.present, color: "bg-emerald-500" },
+                { label: "มาสาย", value: graphSummary.late, color: "bg-amber-400" },
+                { label: "ลา", value: graphSummary.leave, color: "bg-blue-500" },
+                { label: "ขาด", value: graphSummary.absent, color: "bg-red-500" },
               ].map(({ label, value, color }) => {
-                const percentage = data.totalStudents ? Math.round((value / data.totalStudents) * 100) : 0;
+                const percentage = graphTotal ? Math.round((value / graphTotal) * 100) : 0;
                 return <div key={label} className="grid min-w-0 grid-rows-[3rem_1fr_auto] justify-items-center gap-2">
                   <div className="text-center leading-tight">
                     <strong className="block text-lg">{value.toLocaleString("th-TH")}</strong>
-                    <span className="text-[11px] text-muted-foreground sm:text-xs">{percentage}%</span>
+                    <span className="text-xs text-muted-foreground">{percentage}%</span>
                   </div>
                   <div className="flex h-full w-full max-w-14 items-end overflow-hidden rounded-t-xl bg-muted/80">
                     <div className={`w-full rounded-t-xl ${color} transition-[height] duration-500 ease-out`} style={{ height: `${percentage}%`, minHeight: percentage > 0 ? 8 : 0 }} />
@@ -111,7 +224,7 @@ export default function DashboardPage() {
                 </div>;
               })}
             </div>
-            <p className="text-center text-xs leading-5 text-muted-foreground">ตัวเลขเหนือแท่งแสดงจำนวนคน · สัดส่วนจากนักเรียนทั้งหมด {data.totalStudents.toLocaleString("th-TH")} คน</p>
+            <p className="text-center text-xs leading-5 text-muted-foreground">ตัวเลขเหนือแท่งแสดงจำนวนรายการ · สัดส่วนจากข้อมูลทั้งหมด {graphTotal.toLocaleString("th-TH")} รายการ</p>
           </CardContent>
         </Card>
         <Card>
@@ -125,7 +238,49 @@ export default function DashboardPage() {
       </div>
 
       <Card className="overflow-hidden">
-        <CardHeader className="border-b bg-blue-50/50 sm:flex-row sm:items-center sm:justify-between">
+        <CardHeader className="gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2"><History className="size-5 text-primary" />ข้อมูลการเข้า–ออกของนักเรียน</CardTitle>
+            <CardDescription className="mt-1">{logDate ? thaiDate(logDate) : "ทุกวันที่บันทึกไว้"} · แสดง {visibleLogs.length.toLocaleString("th-TH")} จาก {filteredLogs.length.toLocaleString("th-TH")} รายการ</CardDescription>
+          </div>
+          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+            <div className="relative min-w-0 flex-1 sm:w-[190px] sm:flex-none">
+              <CalendarDays className="absolute left-3 top-3 size-4 text-muted-foreground" />
+              <Input aria-label="กรองข้อมูลตามวันที่" type="date" value={logDate} onChange={(event) => setLogDate(event.target.value)} className="pl-10" />
+            </div>
+            {logDate && <Button type="button" variant="outline" onClick={() => setLogDate("")}>แสดงทั้งหมด</Button>}
+            <Button type="button" variant="outline" size="icon" onClick={loadLogs} disabled={logsLoading} aria-label="โหลดข้อมูลเข้าออกใหม่"><RefreshCw className={logsLoading ? "size-4 animate-spin" : "size-4"} /></Button>
+          </div>
+        </CardHeader>
+        <CardContent className="p-0">
+          {logsError && <div role="alert" className="mx-5 mb-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 sm:mx-6">{logsError}</div>}
+          <Table>
+            <TableHeader><TableRow><TableHead>วันที่</TableHead><TableHead>นักเรียน</TableHead><TableHead>ห้องเรียน</TableHead><TableHead>เวลาเข้า</TableHead><TableHead>เวลาออก</TableHead><TableHead>สถานะ</TableHead></TableRow></TableHeader>
+            <TableBody>
+              {logsLoading ? <TableRow><TableCell colSpan={6} className="h-40 text-center"><Loader2 className="mx-auto size-6 animate-spin text-primary" /><p className="mt-2 text-muted-foreground">กำลังโหลดข้อมูล...</p></TableCell></TableRow>
+              : filteredLogs.length === 0 ? <TableRow><TableCell colSpan={6} className="h-40 text-center text-muted-foreground">ไม่พบข้อมูลการเข้าออก{logDate ? "ในวันที่เลือก" : ""}</TableCell></TableRow>
+              : visibleLogs.map((item) => <TableRow key={item.id}>
+                <TableCell className="whitespace-nowrap">{thaiDate(item.attendanceDate)}</TableCell>
+                <TableCell><p className="font-medium">{item.firstName} {item.lastName}</p><p className="text-xs text-muted-foreground">{item.studentCode}</p></TableCell>
+                <TableCell>{item.classroom}</TableCell>
+                <TableCell className="whitespace-nowrap font-medium tabular-nums">{displayTime(item.checkedInAt)}</TableCell>
+                <TableCell className="whitespace-nowrap font-medium tabular-nums">{displayTime(item.checkedOutAt)}</TableCell>
+                <TableCell><StatusBadge status={item.status} /></TableCell>
+              </TableRow>)}
+            </TableBody>
+          </Table>
+          {filteredLogs.length > logPageSize && <div className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <p className="text-center text-sm text-muted-foreground sm:text-left">หน้า {logPage.toLocaleString("th-TH")} จาก {logTotalPages.toLocaleString("th-TH")} · รายการ {(((logPage - 1) * logPageSize) + 1).toLocaleString("th-TH")}–{Math.min(logPage * logPageSize, filteredLogs.length).toLocaleString("th-TH")}</p>
+            <div className="grid grid-cols-2 gap-2 sm:flex">
+              <Button type="button" variant="outline" disabled={logPage === 1} onClick={() => setLogPage((page) => Math.max(1, page - 1))}><ChevronLeft className="size-4" />ก่อนหน้า</Button>
+              <Button type="button" variant="outline" disabled={logPage === logTotalPages} onClick={() => setLogPage((page) => Math.min(logTotalPages, page + 1))}>ถัดไป<ChevronRight className="size-4" /></Button>
+            </div>
+          </div>}
+        </CardContent>
+      </Card>
+
+      <Card className="hidden" aria-hidden="true">
+        <CardHeader className="bg-blue-50/50 sm:flex-row sm:items-center sm:justify-between">
           <div><CardTitle className="flex items-center gap-2"><School className="size-5 text-blue-600" />นักเรียนที่ลา</CardTitle><CardDescription className="mt-1">เรียงรายการที่รออนุมัติก่อน · {thaiDate(date)}</CardDescription></div>
           <div className="flex flex-wrap items-center gap-2">{pendingLeaveCount > 0 && <Badge className="border-amber-200 bg-amber-50 text-amber-700">รออนุมัติ {pendingLeaveCount}</Badge>}<Badge className="border-blue-200 bg-blue-100 text-blue-700">ทั้งหมด {data.leaveStudents.length}</Badge></div>
         </CardHeader>

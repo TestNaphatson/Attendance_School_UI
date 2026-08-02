@@ -1,13 +1,43 @@
-node_modules
-.next/
-node_modules/
-.env*
+# Dependencies
+/node_modules/
+
+# Next.js build output
+/.next/
+/out/
+/build/
+
+# Test coverage
+/coverage/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+
+# Logs
 *.log
-tsconfig.tsbuildinfo
-database/SchemaFix/bin/
-database/SchemaFix/obj/
-.next-dev.*.log
-.api-dev.*.log
-.next/
-node_modules/
-.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript / Next.js generated files
+*.tsbuildinfo
+next-env.d.ts
+
+# Deployment and local tooling
+.vercel/
+.impeccable/
+
+# .NET build output
+**/bin/
+**/obj/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*~

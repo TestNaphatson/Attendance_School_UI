@@ -80,7 +80,7 @@ export default function AttendancePage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="w-full space-y-6">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div><p className="mb-1 text-sm font-medium text-primary">เช็กชื่อประจำวัน</p><h1 className="text-2xl font-bold sm:text-3xl">บันทึกการเข้าเรียน</h1><p className="mt-2 text-sm text-muted-foreground">เลือกนักเรียนและระบุสถานะการเข้าเรียนของวันที่เลือก</p></div>
         <div className="relative"><CalendarDays className="absolute left-3 top-3 size-4 text-muted-foreground" /><Input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-[200px] bg-white pl-10" /></div>

@@ -2,16 +2,19 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertCircle, CalendarDays, Check, CheckCircle2, Clock3, FileText, GraduationCap, Loader2, LocateFixed, LogOut, MapPin, Navigation, Send, ShieldCheck } from "lucide-react";
+import { AlertCircle, CalendarDays, Check, CheckCircle2, Clock3, FileText, GraduationCap, Loader2, LocateFixed, LogOut, MapPin, Navigation, Send, ShieldCheck, TimerReset } from "lucide-react";
 import { api, clearSession, getUser } from "@/lib/api";
 import { LeaveType } from "@/lib/types";
 import { thaiDate, today } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
+import { subscribeToTimeEntryChanges } from "@/lib/realtime";
 
 type CheckInData = {
   date: string;
@@ -32,6 +35,16 @@ type CheckInData = {
     leaveReviewedAt?: string | null;
     remark?: string;
     createdAt: string;
+    checkedOutAt?: string | null;
+    checkOutStatus?: "Early" | "Normal" | null;
+  };
+  timeEntryRequest: null | {
+    id: number;
+    requestedTime: string;
+    reason: string;
+    status: "Pending" | "Approved" | "Rejected";
+    createdAt: string;
+    reviewedAt?: string | null;
   };
 };
 
@@ -46,6 +59,7 @@ export default function CheckInPage() {
   const [data, setData] = useState<CheckInData | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [checkOutSaving, setCheckOutSaving] = useState(false);
   const [error, setError] = useState("");
   const [now, setNow] = useState(new Date());
   const [position, setPosition] = useState<Position | null>(null);
@@ -56,6 +70,10 @@ export default function CheckInPage() {
   const [leaveReason, setLeaveReason] = useState("");
   const [leaveSaving, setLeaveSaving] = useState(false);
   const [leaveMessage, setLeaveMessage] = useState("");
+  const [requestedTime, setRequestedTime] = useState("");
+  const [timeEntryReason, setTimeEntryReason] = useState("");
+  const [timeEntrySaving, setTimeEntrySaving] = useState(false);
+  const [timeEntryMessage, setTimeEntryMessage] = useState("");
   const [user, setUser] = useState<ReturnType<typeof getUser>>({});
 
   async function load() {
@@ -106,8 +124,9 @@ export default function CheckInPage() {
     setUser(getUser());
     void load();
     requestLocation();
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
+    const clockTimer = setInterval(() => setNow(new Date()), 1000);
+    const unsubscribe = subscribeToTimeEntryChanges(() => void load());
+    return () => { clearInterval(clockTimer); unsubscribe(); };
   }, [requestLocation]);
 
   async function checkIn() {
@@ -120,6 +139,19 @@ export default function CheckInPage() {
       setError(err instanceof Error ? err.message : "เช็กอินไม่สำเร็จ");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function checkOut() {
+    setCheckOutSaving(true);
+    setError("");
+    try {
+      await api("/StudentCheckIn/check-out", { method: "POST" });
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "เช็กเอาต์ไม่สำเร็จ");
+    } finally {
+      setCheckOutSaving(false);
     }
   }
 
@@ -152,6 +184,36 @@ export default function CheckInPage() {
     }
   }
 
+  async function submitTimeEntryRequest(event: React.FormEvent) {
+    event.preventDefault();
+    if (!requestedTime) {
+      setError("กรุณาระบุเวลาที่ต้องการลง");
+      return;
+    }
+    if (!timeEntryReason.trim()) {
+      setError("กรุณาระบุเหตุผลที่ไม่สามารถเช็กอินได้");
+      return;
+    }
+    setTimeEntrySaving(true);
+    setError("");
+    setTimeEntryMessage("");
+    try {
+      const result = await api<{ message?: string }>("/StudentCheckIn/time-entry-request", {
+        method: "POST",
+        body: JSON.stringify({ requestedTime, reason: timeEntryReason.trim() }),
+      });
+      setTimeEntryMessage(result.message || "ส่งคำขอลงเวลาให้ Admin แล้ว");
+      setTimeEntryReason("");
+      setRequestedTime("");
+      setRequestTopic("");
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "ส่งคำขอลงเวลาไม่สำเร็จ");
+    } finally {
+      setTimeEntrySaving(false);
+    }
+  }
+
   function logout() {
     clearSession();
     router.replace("/login");
@@ -165,6 +227,10 @@ export default function CheckInPage() {
         timeZone: "Asia/Bangkok",
       }).format(new Date(data.attendance.createdAt))
     : null;
+  const checkOutTime = data?.attendance?.checkedOutAt
+    ? new Intl.DateTimeFormat("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" }).format(new Date(data.attendance.checkedOutAt))
+    : null;
+  const checkOutStatusLabel = data?.attendance?.checkOutStatus === "Early" ? "ออกก่อนเวลา" : "ออกเวลาปกติ";
   const isLate = data?.attendance?.status === "Late";
   const isAbsent = data?.attendance?.status === "Absent";
   const isLeave = data?.attendance?.status === "Leave";
@@ -174,6 +240,12 @@ export default function CheckInPage() {
     : leaveApprovalStatus === "Rejected"
       ? "Admin ไม่อนุมัติการลา"
       : "รอ Admin อนุมัติการลา";
+  const timeEntryRequest = data?.timeEntryRequest;
+  const timeEntryStatusLabel = timeEntryRequest?.status === "Approved"
+    ? "Admin อนุมัติคำขอลงเวลาแล้ว"
+    : timeEntryRequest?.status === "Rejected"
+      ? "Admin ไม่อนุมัติคำขอลงเวลา"
+      : "รอ Admin อนุมัติคำขอลงเวลา";
   const mapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const mapUrl = position
     ? mapsApiKey
@@ -187,52 +259,57 @@ export default function CheckInPage() {
   return (
     <main className="min-h-screen bg-background">
       <header className="border-b bg-white">
-        <div className="mx-auto flex h-20 max-w-5xl items-center justify-between px-4 sm:px-6">
+        <div className="mx-auto flex h-24 max-w-full items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-primary text-white"><GraduationCap className="size-6" /></span>
+            <span className="grid size-11 place-items-center rounded-xl bg-primary text-white"><GraduationCap className="size-6" /></span>
             <div><p className="font-bold leading-5">เช็กชื่อ</p><p className="text-xs text-muted-foreground">Student Check-in</p></div>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden text-right sm:block"><p className="text-sm font-semibold">{user.fullName || "นักเรียน"}</p><p className="text-xs text-muted-foreground">Student</p></div>
-            <Button variant="outline" size="sm" onClick={logout}><LogOut className="size-4" />ออกจากระบบ</Button>
+            <Button variant="outline" onClick={logout}><LogOut className="size-4" />ออกจากระบบ</Button>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-[#243b91] via-[#3152b8] to-[#5f7df1] p-6 text-white shadow-xl shadow-blue-900/10 sm:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto max-w-full px-4 py-8 sm:px-6 sm:py-12">
+        <div className="mx-auto mb-6 max-w-[732px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#243b91] via-[#3152b8] to-[#5f7df1] p-4 text-white shadow-lg shadow-blue-900/10 sm:p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <Badge className="mb-3 border-white/20 bg-white/15 px-2 py-0.5 text-[10px] text-white sm:text-xs"><CalendarDays className="mr-1 size-3" />{thaiDate(data?.date ?? today())}</Badge>
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">สวัสดี {data?.student.firstName || user.fullName || "นักเรียน"}</h1>
-              <p className="mt-2 max-w-xl text-xs leading-5 text-blue-100 sm:text-sm sm:leading-6">เช็กสถานะของวันนี้ แล้วเลือกเช็กอินหรือแจ้งลาได้จากเมนูด้านล่าง</p>
+              <Badge className="mb-2 border-white/20 bg-white/15 px-2 py-0.5 text-[10px] text-white sm:text-xs"><CalendarDays className="mr-1 size-3" />{thaiDate(data?.date ?? today())}</Badge>
+              <h1 className="text-xl font-bold tracking-tight sm:text-2xl">สวัสดี {data?.student.firstName || user.fullName || "นักเรียน"}</h1>
+              <p className="mt-1.5 max-w-md text-xs leading-5 text-blue-100 sm:text-sm">เช็กสถานะของวันนี้ แล้วเลือกเช็กอินหรือแจ้งลาได้จากเมนูด้านล่าง</p>
             </div>
-            <div className="self-start rounded-xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+            <div className="self-start rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 backdrop-blur-sm">
               <p className="text-[10px] font-medium text-blue-100 sm:text-xs">เวลาประเทศไทย</p>
-              <p className="mt-0.5 text-2xl font-bold tabular-nums">{now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" })}</p>
+              <p className="mt-0.5 text-xl font-bold tabular-nums">{now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Bangkok" })}</p>
               <p className="mt-0.5 text-[10px] text-blue-100 sm:text-xs">เช็กอินก่อน 08:30 น. = มาเรียน</p>
             </div>
           </div>
         </div>
 
-        {error && <Alert className="mx-auto mb-5 max-w-2xl border-red-200 bg-red-50 text-red-700"><AlertCircle className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>เกิดข้อผิดพลาด</AlertTitle><AlertDescription>{error}</AlertDescription></div></Alert>}
-        {leaveMessage && <Alert className="mx-auto mb-5 max-w-2xl border-emerald-200 bg-emerald-50 text-emerald-700"><CheckCircle2 className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>ส่งคำขอแล้ว</AlertTitle><AlertDescription>{leaveMessage}</AlertDescription></div></Alert>}
+        {error && <Alert className="mx-auto mb-5 max-w-[732px] border-red-200 bg-red-50 text-red-700"><AlertCircle className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>เกิดข้อผิดพลาด</AlertTitle><AlertDescription>{error}</AlertDescription></div></Alert>}
+        {leaveMessage && <Alert className="mx-auto mb-5 max-w-[732px] border-emerald-200 bg-emerald-50 text-emerald-700"><CheckCircle2 className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>ส่งคำขอแล้ว</AlertTitle><AlertDescription>{leaveMessage}</AlertDescription></div></Alert>}
+        {timeEntryMessage && <Alert className="mx-auto mb-5 max-w-[732px] border-emerald-200 bg-emerald-50 text-emerald-700"><CheckCircle2 className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>ส่งคำขอแล้ว</AlertTitle><AlertDescription>{timeEntryMessage}</AlertDescription></div></Alert>}
+        {timeEntryRequest && !data?.checkedIn && <Alert className={`mx-auto mb-5 max-w-[732px] ${timeEntryRequest.status === "Rejected" ? "border-red-200 bg-red-50 text-red-700" : "border-amber-200 bg-amber-50 text-amber-800"}`}><TimerReset className="absolute left-4 top-4 size-4" /><div className="pl-7"><AlertTitle>{timeEntryStatusLabel}</AlertTitle><AlertDescription>เวลาที่ขอ {timeEntryRequest.requestedTime.slice(0, 5)} น. · {timeEntryRequest.reason}</AlertDescription></div></Alert>}
 
-        <div className="mx-auto grid max-w-2xl gap-5">
-          {!data?.checkedIn && <Card className="overflow-hidden border-0 shadow-[0_8px_32px_rgba(25,38,70,.08)]">
-            <CardHeader className="border-b bg-muted/30">
+        <div className="mx-auto grid max-w-[732px] gap-5">
+          {!data?.checkedIn && timeEntryRequest?.status !== "Pending" && <Card className="overflow-hidden border-0 shadow-[0_8px_32px_rgba(25,38,70,.08)]">
+            <CardHeader className="bg-muted/30">
               <div className="flex items-start gap-3">
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary"><FileText className="size-5" /></span>
                 <div><CardTitle>วันนี้ต้องการทำอะไร?</CardTitle><CardDescription className="mt-1">เลือกเพียงหนึ่งรายการต่อวัน</CardDescription></div>
               </div>
             </CardHeader>
             <CardContent className="pt-6">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <button type="button" onClick={() => { setRequestTopic(""); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic !== "leave" ? "border-primary bg-primary/5 ring-2 ring-primary/10" : "border-border hover:border-primary/40"} disabled:cursor-not-allowed disabled:opacity-60`}>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <button type="button" onClick={() => { setRequestTopic(""); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "" ? "border-primary bg-primary/5 ring-2 ring-primary/10" : "border-border hover:border-primary/40"} disabled:cursor-not-allowed disabled:opacity-60`}>
                   <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-emerald-100 text-emerald-700"><CheckCircle2 className="size-6" /></span><span><strong className="block">เช็กอินเข้าเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">บันทึกว่ามาเรียนวันนี้</span></span></span>
                 </button>
                 <button type="button" onClick={() => { setRequestTopic("leave"); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "leave" ? "border-blue-500 bg-blue-50 ring-2 ring-blue-100" : "border-border hover:border-blue-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
                   <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-blue-100 text-blue-700"><FileText className="size-6" /></span><span><strong className="block">แจ้งลาเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">ส่งเหตุผลให้ Admin ตรวจสอบ</span></span></span>
+                </button>
+                <button type="button" onClick={() => { setRequestTopic("time"); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "time" ? "border-violet-500 bg-violet-50 ring-2 ring-violet-100" : "border-border hover:border-violet-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
+                  <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-violet-100 text-violet-700"><TimerReset className="size-6" /></span><span><strong className="block">ขอลงเวลา</strong><span className="mt-0.5 block text-sm text-muted-foreground">กรณีเช็กอินไม่ได้</span></span></span>
                 </button>
               </div>
 
@@ -254,10 +331,26 @@ export default function CheckInPage() {
                   <Button type="submit" className="h-12 w-full text-base" disabled={leaveSaving || !leaveReason.trim()}>{leaveSaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><Send className="size-4" />ส่งคำขออนุมัติลา</>}</Button>
                 </form>
               )}
+              {requestTopic === "time" && (
+                <form onSubmit={submitTimeEntryRequest} className="mt-6 space-y-5 border-t pt-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="requestedTime">เวลาที่ต้องการลง</Label>
+                    <Input id="requestedTime" type="time" value={requestedTime} onChange={(event) => setRequestedTime(event.target.value)} required />
+                    <p className="text-xs leading-5 text-muted-foreground">ระบุเวลาที่มาถึงจริง ระบบจะคำนวณสถานะมาเรียน มาสาย หรือขาดเรียนหลัง Admin อนุมัติ</p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="timeEntryReason">เหตุผลที่ไม่สามารถเช็กอินได้</Label>
+                    <textarea id="timeEntryReason" value={timeEntryReason} onChange={(event) => setTimeEntryReason(event.target.value)} rows={4} maxLength={500} required placeholder="เช่น โทรศัพท์ไม่มีอินเทอร์เน็ต หรือระบบขัดข้อง..." className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring" />
+                    <p className="text-right text-xs text-muted-foreground">{timeEntryReason.length}/500</p>
+                  </div>
+                  <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm leading-6 text-violet-800"><strong className="block">หลังส่งคำขอ</strong><span>คำขอจะปรากฏที่หน้า Admin ทันที และระบบจะบันทึกเวลาเมื่อได้รับอนุมัติเท่านั้น</span></div>
+                  <Button type="submit" className="h-12 w-full bg-violet-600 text-base hover:bg-violet-700" disabled={timeEntrySaving || !requestedTime || !timeEntryReason.trim()}>{timeEntrySaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><TimerReset className="size-4" />ส่งคำขออนุมัติลงเวลา</>}</Button>
+                </form>
+              )}
             </CardContent>
           </Card>}
 
-          {requestTopic !== "leave" && <Card className="overflow-hidden border-0 shadow-[0_10px_40px_rgba(25,38,70,.1)]">
+          {requestTopic === "" && <Card className="overflow-hidden border-0 shadow-[0_10px_40px_rgba(25,38,70,.1)]">
             <div className={`h-1.5 ${data?.checkedIn ? isLeave ? "bg-blue-500" : isAbsent ? "bg-red-500" : isLate ? "bg-amber-500" : "bg-emerald-500" : "bg-primary"}`} />
             <CardHeader className="items-center pb-3 text-center">
               {loading ? (
@@ -275,6 +368,7 @@ export default function CheckInPage() {
                   {isLeave ? leaveApprovalLabel : isAbsent ? "ขาดเรียน" : isLate ? "มาสาย" : "มาเรียน"}
                 </Badge>
               )}
+              {checkOutTime && <div className="flex flex-wrap items-center justify-center gap-2"><p className="text-sm font-medium text-slate-700">เวลาออกเรียน {checkOutTime} น.</p><Badge className={data?.attendance?.checkOutStatus === "Early" ? "border-amber-200 bg-amber-50 text-amber-700" : "border-emerald-200 bg-emerald-50 text-emerald-700"}>{checkOutStatusLabel}</Badge></div>}
             </CardHeader>
             <CardContent className="space-y-5">
               {data && (
@@ -289,14 +383,49 @@ export default function CheckInPage() {
                   <div className="flex items-center justify-between gap-3"><span className="flex items-center gap-2"><AlertCircle className="size-4 text-red-600" />ขาดเรียน</span><strong>ไม่เช็กอินก่อน 03:00 น.</strong></div>
                 </div>
               </div>
-              <Button className={`h-14 w-full text-base ${data?.checkedIn ? isLeave ? "bg-blue-600 hover:bg-blue-600" : isAbsent ? "bg-red-600 hover:bg-red-600" : isLate ? "bg-amber-600 hover:bg-amber-600" : "bg-emerald-600 hover:bg-emerald-600" : ""}`} disabled={loading || saving || data?.checkedIn} onClick={checkIn}>
-                {saving ? <><Loader2 className="size-5 animate-spin" />กำลังเช็กอิน...</> : isLeave ? <><FileText className="size-5" />วันนี้บันทึกการลาแล้ว</> : data?.checkedIn ? <><CheckCircle2 className="size-5" />เช็กอินวันนี้แล้ว</> : <><MapPin className="size-5" />เช็กอินเข้าเรียน</>}
-              </Button>
+              <div className="grid grid-cols-2 gap-3">
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button className={`h-14 w-full text-base ${data?.checkedIn ? isLeave ? "bg-blue-600 hover:bg-blue-600" : isAbsent ? "bg-red-600 hover:bg-red-600" : isLate ? "bg-amber-600 hover:bg-amber-600" : "bg-emerald-600 hover:bg-emerald-600" : ""}`} disabled={loading || saving || data?.checkedIn}>
+                    {saving ? <><Loader2 className="size-5 animate-spin" />กำลังเช็กอิน...</> : isLeave ? <><FileText className="size-5" />วันนี้บันทึกการลาแล้ว</> : data?.checkedIn ? <><CheckCircle2 className="size-5" />เช็กอินวันนี้แล้ว</> : <><MapPin className="size-5" />เช็กอินเข้าเรียน</>}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>ยืนยันการเช็กอินเข้าเรียน</AlertDialogTitle>
+                    <AlertDialogDescription>ระบบจะบันทึกเวลาเช็กอินปัจจุบันจากเซิร์ฟเวอร์ เมื่อยืนยันแล้วจะไม่สามารถส่งคำขอลาสำหรับวันนี้ได้</AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>ยกเลิก</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => void checkIn()}><CheckCircle2 className="size-4" />ยืนยันเช็กอิน</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" className="h-14 w-full border-slate-300 text-base" disabled={loading || checkOutSaving || !data?.checkedIn || isLeave || isAbsent || Boolean(checkOutTime)}>
+                    {checkOutSaving
+                      ? <><Loader2 className="size-5 animate-spin" />กำลังบันทึกเวลาออก...</>
+                      : checkOutTime
+                        ? <><CheckCircle2 className="size-5 text-emerald-600" />ออกเวลาเรียนแล้ว {checkOutTime} น.</>
+                        : !data?.checkedIn
+                          ? <><LogOut className="size-5" />เช็กอินก่อนออกเวลาเรียน</>
+                          : isLeave || isAbsent
+                            ? <><LogOut className="size-5" />ไม่สามารถออกเวลาเรียนได้</>
+                            : <><LogOut className="size-5" />ออกเวลาเรียน</>}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader><AlertDialogTitle>ยืนยันการออกเวลาเรียน</AlertDialogTitle><AlertDialogDescription>ระบบจะบันทึกเวลาออกเรียนปัจจุบันจากเซิร์ฟเวอร์ และไม่สามารถบันทึกซ้ำได้</AlertDialogDescription></AlertDialogHeader>
+                  <AlertDialogFooter><AlertDialogCancel>ยกเลิก</AlertDialogCancel><AlertDialogAction onClick={() => void checkOut()}><LogOut className="size-4" />ยืนยันออกเวลาเรียน</AlertDialogAction></AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+              </div>
               <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="size-3.5" />เวลาตัดสินสถานะอ้างอิงจากเวลาเซิร์ฟเวอร์ประเทศไทย</p>
             </CardContent>
           </Card>}
 
-          {requestTopic !== "leave" && <Card className="overflow-hidden">
+          {requestTopic === "" && <Card className="overflow-hidden">
             <CardHeader className="flex-row items-center justify-between border-b">
               <div><CardTitle className="flex items-center gap-2"><MapPin className="size-5 text-primary" />ตำแหน่งปัจจุบัน</CardTitle><CardDescription className="mt-2">แสดงตำแหน่งจากอุปกรณ์บน Google Maps</CardDescription></div>
               <Button variant="outline" size="sm" onClick={requestLocation} disabled={locationLoading}><LocateFixed className={locationLoading ? "size-4 animate-pulse" : "size-4"} />ค้นหาตำแหน่ง</Button>

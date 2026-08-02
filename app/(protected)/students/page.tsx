@@ -76,7 +76,7 @@ export default function StudentsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="w-full space-y-6">
       <div><p className="mb-1 text-sm font-medium text-primary">จัดการนักเรียน</p><h1 className="text-2xl font-bold sm:text-3xl">รายชื่อนักเรียน</h1><p className="mt-2 text-sm text-muted-foreground">ค้นหา ตรวจสอบ และดูสถานะการเข้าเรียนของนักเรียนทั้งหมด</p></div>
       <Card>
         <CardHeader className="border-b">

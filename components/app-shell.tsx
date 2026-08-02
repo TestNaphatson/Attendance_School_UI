@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BarChart3, ClipboardCheck, FileCheck2, FileSpreadsheet, GraduationCap, KeyRound, LogOut, Menu, UsersRound, X } from "lucide-react";
+import { BarChart3, ClipboardCheck, FileCheck2, FileSpreadsheet, GraduationCap, KeyRound, LogOut, Menu, TimerReset, UsersRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { clearSession, getUser } from "@/lib/api";
+import { api, clearSession, getUser } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { subscribeToTimeEntryChanges } from "@/lib/realtime";
 
 const links = [
   { href: "/dashboard", label: "ภาพรวม", description: "สรุปประจำวัน", icon: BarChart3 },
@@ -14,6 +15,7 @@ const links = [
   { href: "/student-accounts", label: "บัญชีนักเรียน", description: "จัดการการเข้าใช้งาน", icon: KeyRound },
   { href: "/attendance", label: "บันทึกการเข้าเรียน", description: "ลงสถานะรายบุคคล", icon: ClipboardCheck },
   { href: "/leave-requests", label: "อนุมัติการลา", description: "ตรวจสอบคำขอ", icon: FileCheck2 },
+  { href: "/time-entry-requests", label: "อนุมัติลงเวลา", description: "คำขอเช็กอินย้อนหลัง", icon: TimerReset },
   { href: "/attendance-logs", label: "Report", description: "ค้นหาและส่งออก", icon: FileSpreadsheet },
 ];
 
@@ -22,8 +24,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<{ fullName?: string; role?: string }>({});
+  const [pendingTimeEntryCount, setPendingTimeEntryCount] = useState(0);
 
-  useEffect(() => setUser(getUser()), []);
+  useEffect(() => {
+    setUser(getUser());
+    async function loadPendingCount() {
+      try {
+        const result = await api<{ count: number }>("/TimeEntryRequests/pending-count");
+        setPendingTimeEntryCount(result.count);
+      } catch { setPendingTimeEntryCount(0); }
+    }
+    void loadPendingCount();
+    return subscribeToTimeEntryChanges(() => void loadPendingCount());
+  }, []);
 
   function logout() {
     clearSession();
@@ -44,7 +57,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           const active = pathname === href;
           return <Link key={href} href={href} onClick={() => setOpen(false)} className={cn("group flex items-center gap-3 rounded-2xl px-3 py-3 transition-all duration-200", active ? "bg-white text-[#203d93] shadow-xl shadow-blue-950/15" : "text-blue-100 hover:translate-x-1 hover:bg-white/10 hover:text-white")}>
             <span className={cn("grid size-10 shrink-0 place-items-center rounded-xl transition-colors", active ? "bg-primary/10 text-primary" : "bg-white/10 text-blue-100 group-hover:bg-white/15")}><Icon className="size-5" /></span>
-            <span><strong className="block text-sm">{label}</strong><span className={cn("mt-0.5 block text-[11px]", active ? "text-slate-500" : "text-blue-200/70")}>{description}</span></span>
+            <span className="min-w-0 flex-1"><strong className="block text-sm">{label}</strong><span className={cn("mt-0.5 block text-[11px]", active ? "text-slate-500" : "text-blue-200/70")}>{description}</span></span>
+            {href === "/time-entry-requests" && pendingTimeEntryCount > 0 && <span className={cn("grid min-w-6 place-items-center rounded-full px-1.5 py-0.5 text-[11px] font-bold", active ? "bg-violet-100 text-violet-700" : "bg-amber-400 text-amber-950")}>{pendingTimeEntryCount > 99 ? "99+" : pendingTimeEntryCount}</span>}
           </Link>;
         })}
       </nav>

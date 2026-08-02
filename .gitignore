@@ -2,6 +2,10 @@ node_modules
 .next/
 node_modules/
 .env*
+*.log
+tsconfig.tsbuildinfo
+database/SchemaFix/bin/
+database/SchemaFix/obj/
 .next-dev.*.log
 .api-dev.*.log
 .next/

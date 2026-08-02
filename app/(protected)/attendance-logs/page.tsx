@@ -96,7 +96,7 @@ export default function AttendanceLogsPage() {
     window.setTimeout(() => { document.title = previousTitle; }, 500);
   }
   return (
-    <div className="report-print-page mx-auto max-w-7xl space-y-6">
+    <div className="report-print-page w-full space-y-6">
       <div>
         <p className="mb-1 text-sm font-medium text-primary">สำหรับผู้ดูแลระบบ</p>
         <h1 className="text-2xl font-bold sm:text-3xl">Report</h1>

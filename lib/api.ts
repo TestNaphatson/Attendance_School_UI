@@ -1,4 +1,4 @@
-function getApiUrl() {
+export function getApiUrl() {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
   if (typeof window !== "undefined") return `http://${window.location.hostname}:5134/api`;
   return "http://localhost:5134/api";
@@ -13,7 +13,7 @@ export class ApiError extends Error {
 
 type ApiOptions = RequestInit & { auth?: boolean };
 
-function getAccessToken() {
+export function getAccessToken() {
   if (typeof window === "undefined") return null;
   const storedToken = localStorage.getItem("access_token");
   if (storedToken) return storedToken;

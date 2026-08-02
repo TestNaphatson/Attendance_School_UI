@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 const leaveTypeLabels = { Sick: "ลาป่วย", Personal: "ลากิจ" } as const;
 const statusLabels = { Pending: "รออนุมัติ", Approved: "อนุมัติแล้ว", Rejected: "ไม่อนุมัติ" } as const;
@@ -45,6 +46,7 @@ export default function LeaveRequestsPage() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState<number | null>(null);
   const [error, setError] = useState("");
+  const [pendingDecision, setPendingDecision] = useState<{ item: LeaveRequest; decision: "Approved" | "Rejected" } | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => { setQuery(search.trim()); setPage(1); }, 350);
@@ -69,8 +71,6 @@ export default function LeaveRequestsPage() {
   useEffect(() => { void load(); }, [query, status, page]);
 
   async function decide(item: LeaveRequest, decision: "Approved" | "Rejected") {
-    const action = decision === "Approved" ? "อนุมัติ" : "ไม่อนุมัติ";
-    if (!window.confirm(`ยืนยัน${action}คำขอลาของ ${item.firstName} ${item.lastName}?`)) return;
     setUpdating(item.id);
     setError("");
     try {
@@ -79,6 +79,7 @@ export default function LeaveRequestsPage() {
         body: JSON.stringify({ status: decision }),
       });
       await load();
+      setPendingDecision(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "ไม่สามารถบันทึกผลการพิจารณาได้");
     } finally {
@@ -87,7 +88,7 @@ export default function LeaveRequestsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6">
+    <div className="w-full space-y-6">
       <div>
         <p className="mb-1 text-sm font-medium text-primary">สำหรับผู้ดูแลระบบ</p>
         <h1 className="text-2xl font-bold sm:text-3xl">อนุมัติการลา</h1>
@@ -119,13 +120,30 @@ export default function LeaveRequestsPage() {
                 <TableCell>{item.classroom}</TableCell>
                 <TableCell><p className="font-medium">{leaveTypeLabels[item.leaveType] ?? "ลา"}</p><p className="max-w-sm text-sm text-muted-foreground">{item.reason || "—"}</p></TableCell>
                 <TableCell><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${item.leaveApprovalStatus === "Approved" ? "bg-emerald-50 text-emerald-700" : item.leaveApprovalStatus === "Rejected" ? "bg-red-50 text-red-700" : "bg-amber-50 text-amber-700"}`}>{statusLabels[item.leaveApprovalStatus] ?? "รออนุมัติ"}</span></TableCell>
-                <TableCell><div className="flex justify-end gap-2">{item.leaveApprovalStatus === "Pending" ? <><Button size="sm" onClick={() => decide(item, "Approved")} disabled={updating === item.id}>{updating === item.id ? <Loader2 className="size-4 animate-spin" /> : <Check className="size-4" />}อนุมัติ</Button><Button size="sm" variant="outline" className="text-red-600" onClick={() => decide(item, "Rejected")} disabled={updating === item.id}><X className="size-4" />ไม่อนุมัติ</Button></> : <span className="text-xs text-muted-foreground"><Clock3 className="mr-1 inline size-3.5" />พิจารณาแล้ว</span>}</div></TableCell>
+                <TableCell><div className="flex justify-end gap-2">{item.leaveApprovalStatus === "Pending" ? <><Button size="sm" onClick={() => setPendingDecision({ item, decision: "Approved" })} disabled={updating === item.id}>{updating === item.id ? <Loader2 className="size-4 animate-spin" /> : <Check className="size-4" />}อนุมัติ</Button><Button size="sm" variant="outline" className="text-red-600" onClick={() => setPendingDecision({ item, decision: "Rejected" })} disabled={updating === item.id}><X className="size-4" />ไม่อนุมัติ</Button></> : <span className="text-xs text-muted-foreground"><Clock3 className="mr-1 inline size-3.5" />พิจารณาแล้ว</span>}</div></TableCell>
               </TableRow>)}
             </TableBody>
           </Table>
           <div className="flex items-center justify-between border-t px-5 py-4"><p className="text-sm text-muted-foreground">หน้า {data.totalPages ? page : 0} จาก {data.totalPages}</p><div className="flex gap-2"><Button variant="outline" size="sm" onClick={() => setPage((value) => value - 1)} disabled={page <= 1 || loading}><ChevronLeft className="size-4" />ก่อนหน้า</Button><Button variant="outline" size="sm" onClick={() => setPage((value) => value + 1)} disabled={page >= data.totalPages || loading}>ถัดไป<ChevronRight className="size-4" /></Button></div></div>
         </CardContent>
       </Card>
+      <AlertDialog open={Boolean(pendingDecision)} onOpenChange={(open) => { if (!open && updating === null) setPendingDecision(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{pendingDecision?.decision === "Approved" ? "ยืนยันการอนุมัติการลา" : "ยืนยันการไม่อนุมัติการลา"}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {pendingDecision && <>คำขอ{leaveTypeLabels[pendingDecision.item.leaveType] ?? "ลา"}ของ <strong className="text-foreground">{pendingDecision.item.firstName} {pendingDecision.item.lastName}</strong> วันที่ <strong className="text-foreground">{pendingDecision.item.attendanceDate}</strong> เมื่อยืนยันแล้วระบบจะบันทึกผลทันที</>}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={updating !== null}>ยกเลิก</AlertDialogCancel>
+            <AlertDialogAction disabled={!pendingDecision || updating !== null} onClick={(event) => { event.preventDefault(); if (pendingDecision) void decide(pendingDecision.item, pendingDecision.decision); }}>
+              {updating !== null ? <Loader2 className="size-4 animate-spin" /> : pendingDecision?.decision === "Approved" ? <Check className="size-4" /> : <X className="size-4" />}
+              {pendingDecision?.decision === "Approved" ? "ยืนยันอนุมัติ" : "ยืนยันไม่อนุมัติ"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

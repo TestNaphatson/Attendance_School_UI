@@ -1,7 +1,7 @@
 using Npgsql;
 
 const string connectionString =
-    "Host=localhost;Port=5432;Database=school_attendance_db;Username=postgres;Password=root";
+    "Host=localhost;Port=5432;Database=school_attendance_db;Username=school_attendance_db;Password=root";
 
 string scriptPath = Path.GetFullPath(
     Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "fix-attendance-schema.sql")

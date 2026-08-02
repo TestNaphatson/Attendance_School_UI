@@ -221,3 +221,69 @@ The recurring language is gently squared: 8px fields and compact controls, 12px 
 - **Don't** make every card float; elevation must communicate navigation, priority, or temporary state.
 - **Don't** rely on red, amber, green, blue, or violet without a textual state label.
 - **Don't** copy the legacy one-off uppercase eyebrow, ad hoc status pills, or rounded-3xl/backdrop modal treatment into new components; maintain them only where compatibility requires it.
+
+---
+
+# Design Decisions
+
+ส่วนนี้บันทึกการตัดสินใจด้านสถาปัตยกรรมที่สำคัญของระบบ โดยอ้างอิงจาก implementation ปัจจุบันของ Frontend และ contract ที่ใช้ร่วมกับ Backend
+
+## 1. Why this framework? — ทำไมเลือก Framework นี้
+
+เลือก **Next.js 16, React 19 และ TypeScript** เพราะระบบมีหลายหน้าที่ใช้ layout, authentication และ UI components ร่วมกัน เช่น Dashboard, รายชื่อนักเรียน, การอนุมัติ และรายงาน Next.js App Router ช่วยจัด route และแยก protected layout ได้ชัดเจน ขณะที่ React เหมาะกับหน้าที่มี state และ interaction จำนวนมาก เช่น filter, pagination, modal และ realtime notification
+
+TypeScript ช่วยกำหนดสัญญาข้อมูลระหว่าง UI กับ API ลดความผิดพลาดจากชื่อ field หรือสถานะที่ไม่ตรงกัน ส่วน Tailwind CSS ช่วยรักษา spacing, responsive behavior และ visual tokens ให้สม่ำเสมอในทีม
+
+การตัดสินใจสำคัญคือให้ Frontend เป็น client ของ Backend API แยกต่างหาก ไม่ผูก business rule สำคัญไว้กับ UI การคำนวณสิทธิ์ การอนุมัติ และการบันทึกข้อมูลจริงจึงต้องถูกตรวจซ้ำที่ Backend เสมอ
+
+## 2. Why this database design? — ทำไมออกแบบ Database แบบนี้
+
+เลือกฐานข้อมูลเชิงสัมพันธ์ **PostgreSQL** เพราะข้อมูลนักเรียน บัญชี การเข้าเรียน และคำขออนุมัติมีความสัมพันธ์และข้อบังคับที่ชัดเจน การใช้ Foreign Key, Unique Constraint และ Check Constraint ช่วยรักษาความถูกต้องของข้อมูลได้ในระดับฐานข้อมูล ไม่ต้องพึ่ง application code เพียงอย่างเดียว
+
+โครงสร้างหลักแยกความรับผิดชอบดังนี้
+
+- `students` เก็บตัวตนและข้อมูลประจำตัวของนักเรียน
+- `student_accounts` เก็บข้อมูล authentication แยกจากข้อมูลนักเรียน
+- `attendances` เก็บผลการเข้าเรียนรายวันและทำหน้าที่เป็นประวัติถาวร
+- `time_entry_requests` เก็บ workflow คำขอลงเวลาและผลการพิจารณาแยกจาก attendance ที่อนุมัติแล้ว
+
+กำหนด Unique Key ที่ `(student_id, attendance_date)` เพื่อป้องกันการบันทึกสถานะซ้ำในวันเดียวกัน และใช้สถานะที่กำหนดแน่นอน เช่น `Present`, `Late`, `Leave`, `Absent` เพื่อให้รายงานและ validation เชื่อถือได้ เวลาเช็กอินและเช็กเอาต์ควรเก็บเป็น UTC แล้วแปลงเป็น `Asia/Bangkok` ตอนแสดงผล ส่วนรอบวันเรียนเริ่ม 03:00 น. ต้องเป็น business rule กลางที่ Backend ใช้ร่วมกันทุก endpoint
+
+## 3. What alternatives did you consider? — มีทางเลือกอื่นหรือไม่
+
+ทางเลือกที่พิจารณามีดังนี้
+
+- **Single-page React ด้วย Vite:** ตั้งค่าและ deploy ง่ายกว่า แต่ต้องสร้าง routing, protected layout และแนวทาง rendering เพิ่มเอง Next.js เหมาะกว่าเมื่อระบบมีหลาย route และต้องการ convention กลาง
+- **Server Actions หรือ API routes ภายใน Next.js:** ลดจำนวนโปรเจกต์ที่ต้องดูแล แต่ระบบนี้มี Backend และฐานข้อมูลแยกอยู่แล้ว การคง API boundary ทำให้แยก deployment, authorization และ scaling ได้ชัดเจนกว่า
+- **NoSQL เช่น MongoDB:** ยืดหยุ่นเมื่อ schema เปลี่ยนบ่อย แต่ข้อมูล attendance ต้องการ uniqueness, relation และ transaction ที่แน่นอน PostgreSQL จึงตรงกับลักษณะงานมากกว่า
+- **Polling สำหรับแจ้งเตือน:** ทำได้ง่าย แต่สร้าง request ซ้ำแม้ไม่มีข้อมูลเปลี่ยนแปลง จึงเลือก SignalR สำหรับคำขอลาและคำขอลงเวลา และยังคงการโหลดครั้งแรกผ่าน REST API
+- **สร้าง PDF ที่ Backend:** ให้รูปแบบรายงานคงที่และเหมาะกับข้อมูลจำนวนมากกว่า แต่เพิ่มภาระ Backend ปัจจุบันจึงสร้าง PDF ฝั่ง browser เพื่อให้ดาวน์โหลดได้ทันที โดยแบ่งหน้าตามขอบแถวตาราง
+
+## 4. With more time, what would you improve? — ถ้ามีเวลาเพิ่ม จะปรับปรุงอะไรต่อ
+
+ลำดับการปรับปรุงที่สำคัญคือ
+
+1. เพิ่ม automated tests ครบทั้ง unit, component และ end-to-end สำหรับ login, check-in, leave approval, time-entry approval และ report export
+2. สร้าง OpenAPI specification เป็นแหล่งข้อมูลกลาง แล้ว generate TypeScript API client เพื่อลด type ที่เขียนซ้ำในแต่ละหน้า
+3. ย้ายการสร้าง PDF ขนาดใหญ่ไป Backend หรือ report worker พร้อม template ที่แบ่งหน้าและทำซ้ำ table header ได้สมบูรณ์
+4. เพิ่ม database migration ที่มี version แทนการใช้ SQL fix แบบไฟล์เดี่ยว พร้อม backup และ rollback procedure
+5. ทำ accessibility audit, responsive test และทดสอบกับข้อมูลภาษาไทยยาว ๆ บนอุปกรณ์จริง
+6. เพิ่ม observability เช่น structured logs, error tracking, API latency, SignalR connection status และ audit log ของผู้อนุมัติ
+7. ทำ flow วันที่และเวลาลาให้ครบทั้ง UI, request DTO, validation, database migration, approval screen และ report โดยไม่เก็บข้อมูลสำคัญรวมไว้ในข้อความ `remark`
+
+## 5. For 1,000,000 users, what would you change? — ถ้าระบบต้องรองรับผู้ใช้ 1 ล้านคน จะเปลี่ยนอะไร
+
+ระบบต้องเปลี่ยนจาก deployment แบบ instance เดียวเป็นสถาปัตยกรรมที่ scale ได้หลายระดับ
+
+- วาง Frontend static assets หลัง CDN และ deploy Next.js แบบหลาย instance โดยไม่เก็บ session state ใน process
+- ใช้ API Gateway, rate limiting และ autoscaling สำหรับ Backend พร้อมแยก read-heavy endpoints เช่น Dashboard และ Report
+- ใช้ Redis สำหรับ distributed cache, short-lived dashboard aggregates, pending counts และ coordination ของ SignalR
+- ใช้ managed SignalR/backplane เพื่อกระจาย realtime events ข้ามหลาย Backend instances โดยไม่เปิด connection ทั้งหมดไว้ที่เครื่องเดียว
+- เพิ่ม connection pooling เช่น PgBouncer, read replicas และ partition ตาราง `attendances` ตามช่วงเวลาเมื่อข้อมูลโตมาก
+- สร้าง composite indexes จาก query จริง เช่น `(attendance_date, status)`, `(student_id, attendance_date)` และ index สำหรับ pending approval queues
+- เปลี่ยน report และ CSV/PDF ขนาดใหญ่เป็น asynchronous jobs ผ่าน message queue แล้วให้ผู้ใช้ดาวน์โหลดจาก object storage เมื่อสร้างเสร็จ
+- ใช้ idempotency key และ transaction สำหรับ check-in/approval เพื่อป้องกันข้อมูลซ้ำจาก retry หรือ request พร้อมกัน
+- แยก audit/event stream สำหรับเหตุการณ์สำคัญ และกำหนด data retention/archival policy เพื่อลดขนาดฐานข้อมูลหลัก
+- เพิ่ม multi-region disaster recovery, automated backup restore test, monitoring, tracing, SLO และ load testing ก่อนเพิ่ม traffic จริง
+
+สิ่งที่ยังคงเดิมแม้ระบบขยายคือ Backend ต้องเป็นผู้บังคับใช้ authorization และ business rules, ฐานข้อมูลต้องรักษา constraint สำคัญ และ UI ต้องแสดงสถานะด้วยข้อความ ไม่พึ่งสีเพียงอย่างเดียว

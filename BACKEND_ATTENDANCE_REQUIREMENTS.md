@@ -69,3 +69,18 @@ Response:
 Backend ปัจจุบันเก็บประเภทลาและเหตุผลรวมกันใน `remark` เช่น `ลาป่วย: มีไข้สูง`
 
 หากต้องการแยกคอลัมน์จริงในฐานข้อมูล ให้เพิ่ม `leaveType` และ `leaveApprovalStatus` ใน Attendance entity, DTO, migration และ Swagger ก่อน แล้วจึงแยกสองค่านี้ออกจาก `remark` โดยยังใช้ unique key `(studentId, attendanceDate)` เช่นเดียวกับการเช็กอิน
+
+## การรองรับวันที่และเวลาลา
+
+`POST /api/StudentCheckIn/leave` ต้องรับ request เพิ่มเติมดังนี้:
+
+```json
+{
+  "leaveType": "Sick",
+  "attendanceDate": "2026-08-03",
+  "leaveTime": "09:30",
+  "reason": "มีไข้สูง"
+}
+```
+
+Backend ต้อง validate ว่า `attendanceDate` ไม่เป็นอดีต, `leaveTime` เป็นเวลาในรูปแบบที่ถูกต้อง, นักเรียนไม่มี Attendance ซ้ำในวันที่เลือก และต้องบันทึก `attendance_date` กับ `leave_time` ลงตาราง `attendances` จากนั้นส่ง `LeaveRequestChanged` ผ่าน SignalR เมื่อสร้างคำขอสำเร็จ ทั้ง LeaveRequests response และ Attendance history response ต้องคืน `leaveTime` ด้วย

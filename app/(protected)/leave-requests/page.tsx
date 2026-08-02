@@ -16,6 +16,7 @@ const statusLabels = { Pending: "รออนุมัติ", Approved: "อน
 type LeaveRequest = {
   id: number;
   attendanceDate: string;
+  leaveTime?: string | null;
   studentCode: string;
   firstName: string;
   lastName: string;
@@ -115,7 +116,7 @@ export default function LeaveRequestsPage() {
               {loading ? <TableRow><TableCell colSpan={6} className="h-48 text-center"><Loader2 className="mx-auto size-6 animate-spin text-primary" /><p className="mt-2 text-muted-foreground">กำลังโหลดคำขอ...</p></TableCell></TableRow>
               : data.items.length === 0 ? <TableRow><TableCell colSpan={6} className="h-48 text-center text-muted-foreground">ไม่พบคำขอลา</TableCell></TableRow>
               : data.items.map((item) => <TableRow key={item.id}>
-                <TableCell>{item.attendanceDate}</TableCell>
+                <TableCell><p>{item.attendanceDate}</p>{item.leaveTime && <p className="mt-1 text-xs text-muted-foreground">เวลา {item.leaveTime.slice(0, 5)} น.</p>}</TableCell>
                 <TableCell><p className="font-medium">{item.firstName} {item.lastName}</p><p className="text-xs text-muted-foreground">{item.studentCode}</p></TableCell>
                 <TableCell>{item.classroom}</TableCell>
                 <TableCell><p className="font-medium">{leaveTypeLabels[item.leaveType] ?? "ลา"}</p><p className="max-w-sm text-sm text-muted-foreground">{item.reason || "—"}</p></TableCell>
@@ -132,7 +133,7 @@ export default function LeaveRequestsPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>{pendingDecision?.decision === "Approved" ? "ยืนยันการอนุมัติการลา" : "ยืนยันการไม่อนุมัติการลา"}</AlertDialogTitle>
             <AlertDialogDescription>
-              {pendingDecision && <>คำขอ{leaveTypeLabels[pendingDecision.item.leaveType] ?? "ลา"}ของ <strong className="text-foreground">{pendingDecision.item.firstName} {pendingDecision.item.lastName}</strong> วันที่ <strong className="text-foreground">{pendingDecision.item.attendanceDate}</strong> เมื่อยืนยันแล้วระบบจะบันทึกผลทันที</>}
+              {pendingDecision && <>คำขอ{leaveTypeLabels[pendingDecision.item.leaveType] ?? "ลา"}ของ <strong className="text-foreground">{pendingDecision.item.firstName} {pendingDecision.item.lastName}</strong> วันที่ <strong className="text-foreground">{pendingDecision.item.attendanceDate}</strong>{pendingDecision.item.leaveTime ? <> เวลา <strong className="text-foreground">{pendingDecision.item.leaveTime.slice(0, 5)} น.</strong></> : null} เมื่อยืนยันแล้วระบบจะบันทึกผลทันที</>}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowDownAZ, CheckCircle2, ChevronLeft, ChevronRight, Loader2, Search, Trash2, UsersRound, X } from "lucide-react";
+import { ArrowDownAZ, ChevronLeft, ChevronRight, Loader2, Search, UsersRound, X } from "lucide-react";
 import { api } from "@/lib/api";
 import { AttendanceStatus, StudentPage } from "@/lib/types";
 import { today } from "@/lib/utils";
@@ -24,10 +24,6 @@ export default function StudentsPage() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [deletingAll, setDeletingAll] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deleteSucceeded, setDeleteSucceeded] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => { setQuery(search.trim()); setPage(1); }, 350);
@@ -45,30 +41,8 @@ export default function StudentsPage() {
       finally { setLoading(false); }
     }
     void load();
-    const timer = window.setInterval(() => void load(), 15_000);
-    return () => window.clearInterval(timer);
-  }, [query, status, sortBy, sortDirection, page, reloadKey]);
+  }, [query, status, sortBy, sortDirection, page]);
 
-  async function deleteAllStudents() {
-    setDeletingAll(true);
-    setError("");
-    try {
-      await new Promise((resolve) => window.setTimeout(resolve, 700));
-      await api<{ deletedCount: number }>("/Students", { method: "DELETE" });
-      setSearch("");
-      setStatus("");
-      setPage(1);
-      setReloadKey((current) => current + 1);
-      setDeleteSucceeded(true);
-      await new Promise((resolve) => window.setTimeout(resolve, 1100));
-      setShowDeleteModal(false);
-      setDeleteSucceeded(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "ไม่สามารถลบนักเรียนทั้งหมดได้");
-    } finally {
-      setDeletingAll(false);
-    }
-  }
   function toggleSort(field: string) {
     if (sortBy === field) setSortDirection((current) => current === "asc" ? "desc" : "asc");
     else { setSortBy(field); setSortDirection("asc"); }
@@ -107,35 +81,6 @@ export default function StudentsPage() {
           </div>
         </CardContent>
       </Card>
-      {showDeleteModal && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/55 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="delete-all-title" onMouseDown={(event) => { if (event.target === event.currentTarget && !deletingAll) setShowDeleteModal(false); }}>
-          <div className="w-full max-w-md rounded-3xl border bg-white p-6 shadow-2xl delete-modal-enter sm:p-7">
-            {deleteSucceeded ? (
-              <div className="py-5 text-center delete-success-pop">
-                <span className="mx-auto grid size-20 place-items-center rounded-full bg-emerald-100 text-emerald-600"><CheckCircle2 className="size-11" /></span>
-                <h2 id="delete-all-title" className="mt-5 text-xl font-bold text-emerald-700">ลบนักเรียนเรียบร้อยแล้ว</h2>
-                <p className="mt-2 text-sm text-muted-foreground">ระบบอัปเดตรายชื่อนักเรียนให้แล้ว</p>
-              </div>
-            ) : (
-              <>
-                <div className="relative mx-auto mb-5 h-28 w-32 overflow-hidden" aria-hidden="true">
-                  <div className={`absolute left-1/2 top-0 w-20 -translate-x-1/2 space-y-1.5 ${deletingAll ? "student-stack-drop" : "student-stack-float"}`}>
-                    {[0, 1, 2].map((item) => <div key={item} className="h-5 rounded-md border border-blue-200 bg-blue-50 shadow-sm" />)}
-                  </div>
-                  <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 text-red-600 ${deletingAll ? "trash-catch" : ""}`}><Trash2 className="size-14" /></div>
-                </div>
-                <div className="text-center">
-                  <h2 id="delete-all-title" className="text-xl font-bold">ลบนักเรียนทั้งหมด?</h2>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">นักเรียน {data.totalItems.toLocaleString("th-TH")} รายการจะถูกปิดใช้งาน และจะไม่สามารถเข้าสู่ระบบได้</p>
-                </div>
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  <Button type="button" variant="outline" onClick={() => setShowDeleteModal(false)} disabled={deletingAll}>ยกเลิก</Button>
-                  <Button type="button" variant="destructive" onClick={deleteAllStudents} disabled={deletingAll}>{deletingAll ? <><Loader2 className="size-4 animate-spin" />กำลังทิ้งลงถัง...</> : <><Trash2 className="size-4" />ยืนยันการลบ</>}</Button>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      )}    </div>
+    </div>
   );
 }

@@ -581,7 +581,6 @@ export default function StudentAccountsPage() {
               <CardTitle className="flex items-center gap-2"><KeyRound className="size-5 text-primary" />บัญชีนักเรียนในระบบ</CardTitle>
               <CardDescription className="mt-2">ข้อมูลจาก API ทั้งหมด {accounts.totalItems.toLocaleString("th-TH")} บัญชี</CardDescription>
             </div>
-            <Button type="button" variant="destructive" onClick={() => { setDeleteAllComplete(false); setShowDeleteAll(true); }} disabled={accountsLoading || accounts.totalItems === 0}><Trash2 className="size-4" />ลบนักเรียนทั้งหมด</Button>
             <div className="relative w-full lg:w-80">
               <Search className="absolute left-3 top-3 size-4 text-muted-foreground" />
               <Input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="ค้นหา Username ชื่อ หรือห้อง..." className="pl-9" />

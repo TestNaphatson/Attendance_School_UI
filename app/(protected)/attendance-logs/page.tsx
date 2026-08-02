@@ -45,6 +45,7 @@ export default function AttendanceLogsPage() {
   const [logs, setLogs] = useState<AttendanceLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [pdfDownloading, setPdfDownloading] = useState(false);
 
   async function load() {
     if (fromDate > toDate) {
@@ -89,11 +90,68 @@ export default function AttendanceLogsPage() {
     URL.revokeObjectURL(url);
   }
 
-  function downloadPdf() {
-    const previousTitle = document.title;
-    document.title = `report-${fromDate}-to-${toDate}`;
-    window.print();
-    window.setTimeout(() => { document.title = previousTitle; }, 500);
+  async function downloadPdf() {
+    const report = document.querySelector<HTMLElement>("[data-pdf-report]");
+    if (!report) return;
+
+    setPdfDownloading(true);
+    setError("");
+    try {
+      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+        import("html2canvas-pro"),
+        import("jspdf"),
+      ]);
+      const canvas = await html2canvas(report, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+      });
+      const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+      const margin = 10;
+      const contentWidth = pdf.internal.pageSize.getWidth() - (margin * 2);
+      const contentHeight = pdf.internal.pageSize.getHeight() - (margin * 2);
+      const pixelsPerMillimeter = canvas.width / contentWidth;
+      const maxSliceHeight = contentHeight * pixelsPerMillimeter;
+      const reportRect = report.getBoundingClientRect();
+      const canvasScale = canvas.height / reportRect.height;
+      const rowBreaks = Array.from(report.querySelectorAll("tr"))
+        .map((row) => Math.round((row.getBoundingClientRect().bottom - reportRect.top) * canvasScale))
+        .filter((position) => position > 0 && position < canvas.height);
+
+      let sliceStart = 0;
+      let page = 0;
+      while (sliceStart < canvas.height) {
+        const idealEnd = Math.min(canvas.height, sliceStart + maxSliceHeight);
+        const safeBreak = rowBreaks.filter((position) => position > sliceStart && position <= idealEnd).at(-1);
+        const sliceEnd = safeBreak ?? idealEnd;
+        const sliceHeight = Math.ceil(sliceEnd - sliceStart);
+        const pageCanvas = document.createElement("canvas");
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = sliceHeight;
+        pageCanvas.getContext("2d")?.drawImage(
+          canvas,
+          0, sliceStart, canvas.width, sliceHeight,
+          0, 0, canvas.width, sliceHeight,
+        );
+
+        if (page > 0) pdf.addPage();
+        pdf.addImage(
+          pageCanvas.toDataURL("image/png"),
+          "PNG",
+          margin,
+          margin,
+          contentWidth,
+          sliceHeight / pixelsPerMillimeter,
+        );
+        sliceStart = sliceEnd;
+        page += 1;
+      }
+      pdf.save(`attendance-${fromDate}-to-${toDate}.pdf`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "ไม่สามารถสร้างไฟล์ PDF ได้");
+    } finally {
+      setPdfDownloading(false);
+    }
   }
   return (
     <div className="report-print-page w-full space-y-6">
@@ -116,11 +174,11 @@ export default function AttendanceLogsPage() {
           <div className="space-y-2"><Label htmlFor="toDate">ถึงวันที่</Label><Input id="toDate" type="date" value={toDate} min={fromDate} onChange={(event) => setToDate(event.target.value)} /></div>
           <Button type="button" variant="outline" onClick={load} disabled={loading}><RefreshCw className={loading ? "size-4 animate-spin" : "size-4"} />ค้นหา</Button>
           <Button type="button" onClick={downloadCsv} disabled={loading || logs.length === 0}><Download className="size-4" />ดาวน์โหลด CSV</Button>
-          <Button type="button" variant="outline" onClick={downloadPdf} disabled={loading || logs.length === 0}><FileDown className="size-4" />ดาวน์โหลด PDF</Button>
+          <Button type="button" variant="outline" onClick={() => void downloadPdf()} disabled={loading || pdfDownloading || logs.length === 0}>{pdfDownloading ? <Loader2 className="size-4 animate-spin" /> : <FileDown className="size-4" />}{pdfDownloading ? "กำลังสร้าง PDF..." : "ดาวน์โหลด PDF"}</Button>
         </CardContent>
       </Card>
 
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden" data-pdf-report>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><FileSpreadsheet className="size-5 text-emerald-600" />รายการทั้งหมด</CardTitle>
           <CardDescription>{logs.length.toLocaleString("th-TH")} รายการ</CardDescription>

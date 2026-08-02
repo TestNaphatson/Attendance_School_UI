@@ -10,4 +10,7 @@ ALTER TABLE attendances
 ALTER TABLE attendances
     ALTER COLUMN recorded_by DROP NOT NULL;
 
+ALTER TABLE attendances
+    ADD COLUMN IF NOT EXISTS leave_time TIME NULL;
+
 COMMIT;

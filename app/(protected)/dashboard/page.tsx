@@ -120,8 +120,6 @@ export default function DashboardPage() {
 
   useEffect(() => {
     void load();
-    const timer = window.setInterval(() => void load(), 15_000);
-    return () => window.clearInterval(timer);
   }, [date]);
 
   useEffect(() => { void loadLogs(); }, []);

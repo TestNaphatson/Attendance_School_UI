@@ -68,6 +68,8 @@ export default function CheckInPage() {
   const [requestTopic, setRequestTopic] = useState("");
   const [leaveType, setLeaveType] = useState<LeaveType>("Sick");
   const [leaveReason, setLeaveReason] = useState("");
+  const [leaveDate, setLeaveDate] = useState(today());
+  const [leaveTime, setLeaveTime] = useState("");
   const [leaveSaving, setLeaveSaving] = useState(false);
   const [leaveMessage, setLeaveMessage] = useState("");
   const [requestedTime, setRequestedTime] = useState("");
@@ -157,6 +159,14 @@ export default function CheckInPage() {
 
   async function submitLeaveRequest(event: React.FormEvent) {
     event.preventDefault();
+    if (!leaveDate) {
+      setError("กรุณาเลือกวันที่ลา");
+      return;
+    }
+    if (!leaveTime) {
+      setError("กรุณาเลือกเวลาที่ต้องการลา");
+      return;
+    }
     if (!leaveReason.trim()) {
       setError("กรุณาระบุเหตุผลการลา");
       return;
@@ -169,12 +179,16 @@ export default function CheckInPage() {
         method: "POST",
         body: JSON.stringify({
           leaveType,
+          attendanceDate: leaveDate,
+          leaveTime,
           reason: leaveReason.trim(),
         }),
       });
       setLeaveMessage(result.message || "บันทึกการลาเรียบร้อยแล้ว");
       setLeaveReason("");
       setLeaveType("Sick");
+      setLeaveDate(today());
+      setLeaveTime("");
       await load();
       setRequestTopic("");
     } catch (err) {
@@ -318,8 +332,8 @@ export default function CheckInPage() {
                 <button type="button" onClick={() => { setRequestTopic(""); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "" ? "border-primary bg-primary/5 ring-2 ring-primary/10" : "border-border hover:border-primary/40"} disabled:cursor-not-allowed disabled:opacity-60`}>
                   <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-emerald-100 text-emerald-700"><CheckCircle2 className="size-6" /></span><span><strong className="block">เช็กอินเข้าเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">บันทึกว่ามาเรียนวันนี้</span></span></span>
                 </button>
-                <button type="button" onClick={() => { setRequestTopic("leave"); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "leave" ? "border-blue-500 bg-blue-50 ring-2 ring-blue-100" : "border-border hover:border-blue-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
-                  <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-blue-100 text-blue-700"><FileText className="size-6" /></span><span><strong className="block">แจ้งลาเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">ส่งเหตุผลให้ Admin ตรวจสอบ</span></span></span>
+                <button type="button" onClick={() => { setRequestTopic("leave"); setError(""); }} disabled={loading} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "leave" ? "border-blue-500 bg-blue-50 ring-2 ring-blue-100" : "border-border hover:border-blue-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
+                  <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-blue-100 text-blue-700"><FileText className="size-6" /></span><span><strong className="block">แจ้งลาเรียน</strong><span className="mt-0.5 block text-sm text-muted-foreground">เลือกวันที่ เวลา และส่งเหตุผลให้ Admin ตรวจสอบ</span></span></span>
                 </button>
                 <button type="button" onClick={() => { setRequestTopic("time"); setError(""); }} disabled={loading || data?.checkedIn} className={`group rounded-2xl border-2 p-4 text-left transition-all ${requestTopic === "time" ? "border-violet-500 bg-violet-50 ring-2 ring-violet-100" : "border-border hover:border-violet-300"} disabled:cursor-not-allowed disabled:opacity-60`}>
                   <span className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-violet-100 text-violet-700"><TimerReset className="size-6" /></span><span><strong className="block">ขอลงเวลา</strong><span className="mt-0.5 block text-sm text-muted-foreground">กรณีเช็กอินไม่ได้</span></span></span>
@@ -335,13 +349,23 @@ export default function CheckInPage() {
                       <option value="Personal">ลากิจ</option>
                     </Select>
                   </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="leaveDate">วันที่ลา</Label>
+                      <Input id="leaveDate" type="date" value={leaveDate} min={today()} onChange={(event) => setLeaveDate(event.target.value)} required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="leaveTime">เวลาที่ต้องการลา</Label>
+                      <Input id="leaveTime" type="time" value={leaveTime} onChange={(event) => setLeaveTime(event.target.value)} required />
+                    </div>
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor="leaveReason">เหตุผลการลา</Label>
                     <textarea id="leaveReason" value={leaveReason} onChange={(event) => setLeaveReason(event.target.value)} rows={4} maxLength={500} required placeholder="กรุณาระบุรายละเอียดหรือเหตุผลการลา..." className="w-full resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-ring" />
                     <p className="text-right text-xs text-muted-foreground">{leaveReason.length}/500</p>
                   </div>
                   <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm leading-6 text-blue-800"><strong className="block">หลังส่งคำขอแล้วจะเกิดอะไรขึ้น?</strong><span>สถานะจะเป็น “รออนุมัติ” และสามารถกลับมาตรวจผลจากหน้านี้ได้</span></div>
-                  <Button type="submit" className="h-12 w-full text-base" disabled={leaveSaving || !leaveReason.trim()}>{leaveSaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><Send className="size-4" />ส่งคำขออนุมัติลา</>}</Button>
+                  <Button type="submit" className="h-12 w-full text-base" disabled={leaveSaving || !leaveDate || !leaveTime || !leaveReason.trim()}>{leaveSaving ? <><Loader2 className="size-4 animate-spin" />กำลังส่งคำขอ...</> : <><Send className="size-4" />ส่งคำขออนุมัติลา</>}</Button>
                 </form>
               )}
               {requestTopic === "time" && (

@@ -1,7 +1,9 @@
 import * as signalR from "@microsoft/signalr";
 import { getAccessToken, getApiUrl } from "@/lib/api";
 
-export function subscribeToTimeEntryChanges(onChange: () => void) {
+export type RequestChangeKind = "leave" | "time-entry";
+
+export function subscribeToRequestChanges(onChange: (kind: RequestChangeKind) => void) {
   const token = getAccessToken();
   if (!token) return () => undefined;
 
@@ -9,20 +11,28 @@ export function subscribeToTimeEntryChanges(onChange: () => void) {
   const connection = new signalR.HubConnectionBuilder()
     .withUrl(hubUrl, { accessTokenFactory: () => token, withCredentials: false })
     .withAutomaticReconnect()
-    // Expected React development cleanup can stop start() during negotiation.
-    // Handle failures below so that cancellation is not reported as a console error.
     .configureLogging(signalR.LogLevel.None)
     .build();
 
   let disposed = false;
-  connection.on("TimeEntryRequestChanged", onChange);
+  const handleTimeEntry = () => onChange("time-entry");
+  const handleLeave = () => onChange("leave");
+  connection.on("TimeEntryRequestChanged", handleTimeEntry);
+  connection.on("LeaveRequestChanged", handleLeave);
   void connection.start().catch((error) => {
     if (!disposed) console.warn("Realtime connection unavailable", error);
   });
 
   return () => {
     disposed = true;
-    connection.off("TimeEntryRequestChanged", onChange);
+    connection.off("TimeEntryRequestChanged", handleTimeEntry);
+    connection.off("LeaveRequestChanged", handleLeave);
     void connection.stop();
   };
+}
+
+export function subscribeToTimeEntryChanges(onChange: () => void) {
+  return subscribeToRequestChanges((kind) => {
+    if (kind === "time-entry") onChange();
+  });
 }
